@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - PPOB & SMM Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .register-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .register-box h2 {
+      margin-bottom: 25px;
+      font-weight: 700;
+      font-size: 28px;
+      color: #00c6ff;
+    }
+
+    .register-box input {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+      background: rgba(255,255,255,0.1);
+      color: #ffffff;
+    }
+
+    .register-box input:focus {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .register-box button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #00c6ff;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .register-box button:hover {
+      background: #0072ff;
+      transform: translateY(-2px);
+    }
+
+    .link {
+      display: block;
+      margin-top: 15px;
+      color: #00c6ff;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .link:hover {
+      color: #ffffff;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .error {
+      color: #ffaaaa;
+    }
+
+    .success {
+      color: #aaffaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="register-box">
+    <h2>Create Your Account</h2>
+    <form id="registerForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+      <button type="submit">Register</button>
+      <div class="message" id="message"></div>
+      <a href="https://tya-ar.github.io/webpanel/Login.html" class="link">Already have an account? Login</a>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('registerForm');
+    const messageDiv = document.getElementById('message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Ambil data input
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+      // Reset pesan
+      messageDiv.style.display = 'none';
+      messageDiv.textContent = '';
+      messageDiv.className = 'message';
+
+      // Validasi
+      if (username === '' || email === '' || password === '' || confirmPassword === '') {
+        showMessage('Please fill in all fields.', 'error');
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        showMessage('Invalid email address.', 'error');
+        return;
+      }
+
+      if (password.length < 6) {
+        showMessage('Password must be at least 6 characters.', 'error');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        showMessage('Passwords do not match.', 'error');
+        return;
+      }
+
+      // Sukses (simulasi)
+      showMessage('Registration successful! Redirecting to login...', 'success');
+
+      setTimeout(() => {
+        window.location.href = 'https://tya-ar.github.io/webpanel/Login.html';
+      }, 2000);
+    });
+
+    function showMessage(msg, type) {
+      messageDiv.textContent = msg;
+      messageDiv.classList.add(type);
+      messageDiv.style.display = 'block';
+    }
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+  </script>
+
+</body>
+</html>
