@@ -1,143 +1,228 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Produk Digital - PPOB & E-Wallet</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Roboto',sans-serif;
-    }
-    body {
-      background:#f2f4f7;
-      color:#333;
-    }
-    header {
-      background:#0d47a1;
-      color:#fff;
-      padding:20px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      border-bottom:3px solid #1565c0;
-    }
-    header h1 {
-      font-size:22px;
-    }
-    .balance {
-      font-size:16px;
-      background:#1565c0;
-      padding:8px 15px;
-      border-radius:20px;
-    }
-    .container {
-      max-width:1200px;
-      margin:0 auto;
-      padding:20px;
-    }
-    .products {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-      gap:15px;
-      margin-top:20px;
-    }
-    .product {
-      background:#fff;
-      padding:15px;
-      border-radius:10px;
-      text-align:center;
-      box-shadow:0 2px 5px rgba(0,0,0,0.1);
-      cursor:pointer;
-      transition:transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .product:hover {
-      transform:translateY(-3px);
-      box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    }
-    .product img {
-      width:50px;
-      margin-bottom:10px;
-    }
-    .product span {
-      display:block;
-      font-size:14px;
-      margin-top:5px;
-      color:#555;
-    }
-    footer {
-      text-align:center;
-      padding:15px;
-      font-size:14px;
-      color:#777;
-      margin-top:30px;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Layanan Digital Lengkap - PPOB & E-Wallet</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * {margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
+  body {background:#f0f2f5;color:#333;}
+  header {
+    background:#0d47a1;
+    color:#fff;
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  header h1 {font-size:22px;}
+  .actions {display:flex;gap:10px;flex-wrap:wrap;}
+  .btn-action {
+    background:#1565c0;
+    border:none;
+    padding:8px 15px;
+    border-radius:20px;
+    color:#fff;
+    cursor:pointer;
+    font-size:14px;
+    transition:background 0.3s;
+  }
+  .btn-action:hover {background:#1e88e5;}
+  .container {max-width:1200px;margin:0 auto;padding:20px;}
+  .products {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:15px;
+    margin-top:20px;
+  }
+  .product {
+    background:#fff;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    cursor:pointer;
+    transition:transform 0.2s ease,box-shadow 0.2s ease;
+  }
+  .product:hover {
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  }
+  .product img {width:50px;margin-bottom:10px;}
+  .product span {display:block;font-size:14px;margin-top:5px;color:#555;}
+  footer {
+    text-align:center;
+    padding:15px;
+    font-size:14px;
+    color:#777;
+    margin-top:30px;
+  }
+  .modal {
+    display:none;
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.7);
+    justify-content:center;
+    align-items:center;
+    z-index:10;
+  }
+  .modal-content {
+    background:#fff;
+    padding:20px;
+    border-radius:8px;
+    width:90%;
+    max-width:400px;
+  }
+  .modal-content h3 {margin-bottom:15px;color:#0d47a1;}
+  .modal-content input {
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+  }
+  .modal-content button {
+    width:100%;
+    padding:10px;
+    border:none;
+    background:#0d47a1;
+    color:#fff;
+    font-size:15px;
+    border-radius:5px;
+    cursor:pointer;
+  }
+  .modal-content button:hover {background:#1565c0;}
+  .close {
+    float:right;
+    font-size:20px;
+    cursor:pointer;
+    color:#999;
+  }
+</style>
 </head>
 <body>
 
 <header>
-  <h1>Produk Digital</h1>
-  <div class="balance">Saldo: Rp 500.000</div>
+  <h1>PPOB & E-Wallet Lengkap</h1>
+  <div class="actions">
+    <div class="btn-action">Saldo: Rp 500.000</div>
+    <button class="btn-action" onclick="openModal('transfer')">Transfer Saldo</button>
+    <button class="btn-action" onclick="openModal('tarik')">Tarik Saldo</button>
+  </div>
 </header>
 
 <div class="container">
-  <h2 style="margin-top:10px; font-size:18px; color:#333;">Pilih Produk</h2>
+  <h2 style="margin:10px 0;font-size:18px;">Semua Layanan Produk Digital</h2>
   <div class="products">
     <div class="product" onclick="buyProduct('Pulsa')">
-      <img src="https://img.icons8.com/color/96/000000/phone.png"/>
+      <img src="https://img.icons8.com/color/96/phone.png"/>
       <strong>Pulsa</strong>
-      <span>Isi Ulang Pulsa</span>
+      <span>Isi Ulang</span>
     </div>
     <div class="product" onclick="buyProduct('Paket Data')">
-      <img src="https://img.icons8.com/color/96/000000/wifi.png"/>
+      <img src="https://img.icons8.com/color/96/wifi.png"/>
       <strong>Paket Data</strong>
       <span>Internet</span>
     </div>
     <div class="product" onclick="buyProduct('Token Listrik')">
-      <img src="https://img.icons8.com/color/96/000000/flash-on.png"/>
+      <img src="https://img.icons8.com/color/96/flash-on.png"/>
       <strong>Token Listrik</strong>
       <span>PLN Prabayar</span>
     </div>
     <div class="product" onclick="buyProduct('Voucher Game')">
-      <img src="https://img.icons8.com/color/96/000000/controller.png"/>
+      <img src="https://img.icons8.com/color/96/controller.png"/>
       <strong>Voucher Game</strong>
       <span>Mobile & PC</span>
     </div>
-    <div class="product" onclick="buyProduct('Voucher Streaming')">
-      <img src="https://img.icons8.com/color/96/000000/video.png"/>
-      <strong>Voucher Streaming</strong>
-      <span>Netflix, VIU, dll.</span>
+    <div class="product" onclick="buyProduct('E-Money')">
+      <img src="https://img.icons8.com/color/96/wallet.png"/>
+      <strong>Top Up E-Money</strong>
+      <span>OVO, DANA, dll.</span>
     </div>
     <div class="product" onclick="buyProduct('BPJS')">
-      <img src="https://img.icons8.com/color/96/000000/hospital.png"/>
+      <img src="https://img.icons8.com/color/96/hospital.png"/>
       <strong>BPJS</strong>
       <span>Pembayaran</span>
     </div>
-    <div class="product" onclick="buyProduct('E-Money')">
-      <img src="https://img.icons8.com/color/96/000000/wallet.png"/>
-      <strong>E-Money</strong>
-      <span>Top Up</span>
+    <div class="product" onclick="buyProduct('PDAM')">
+      <img src="https://img.icons8.com/color/96/water.png"/>
+      <strong>PDAM</strong>
+      <span>Tagihan Air</span>
     </div>
-    <div class="product" onclick="buyProduct('Tagihan PDAM')">
-      <img src="https://img.icons8.com/color/96/000000/water.png"/>
-      <strong>Tagihan PDAM</strong>
-      <span>Air Bersih</span>
+    <div class="product" onclick="buyProduct('TV Kabel')">
+      <img src="https://img.icons8.com/color/96/retro-tv.png"/>
+      <strong>TV Kabel</strong>
+      <span>Indihome, dll.</span>
+    </div>
+    <div class="product" onclick="buyProduct('Voucher Streaming')">
+      <img src="https://img.icons8.com/color/96/video.png"/>
+      <strong>Streaming</strong>
+      <span>Netflix, dll.</span>
+    </div>
+    <div class="product" onclick="buyProduct('Pascabayar')">
+      <img src="https://img.icons8.com/color/96/bill.png"/>
+      <strong>Pascabayar</strong>
+      <span>Telkomsel, dll.</span>
+    </div>
+    <div class="product" onclick="buyProduct('Voucher Edukasi')">
+      <img src="https://img.icons8.com/color/96/book.png"/>
+      <strong>Voucher Edukasi</strong>
+      <span>Kursus Online</span>
+    </div>
+    <div class="product" onclick="buyProduct('Tagihan Lainnya')">
+      <img src="https://img.icons8.com/color/96/money.png"/>
+      <strong>Lainnya</strong>
+      <span>Multifinance, dll.</span>
     </div>
   </div>
 </div>
 
 <footer>
-  © 2025 PPOB & E-Wallet. All rights reserved.
+  © 2025 PPOB & E-Wallet Lengkap. All rights reserved.
 </footer>
+
+<!-- Modal Transfer -->
+<div class="modal" id="transferModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('transfer')">&times;</span>
+    <h3>Transfer Saldo</h3>
+    <input type="text" placeholder="Nomor Tujuan"/>
+    <input type="number" placeholder="Jumlah Saldo"/>
+    <button onclick="submitTransfer()">Kirim Saldo</button>
+  </div>
+</div>
+
+<!-- Modal Tarik Saldo -->
+<div class="modal" id="tarikModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('tarik')">&times;</span>
+    <h3>Tarik Saldo</h3>
+    <input type="text" placeholder="Nomor Rekening / E-Wallet"/>
+    <input type="number" placeholder="Jumlah Tarik Saldo"/>
+    <button onclick="submitTarik()">Tarik Saldo</button>
+  </div>
+</div>
 
 <script>
   function buyProduct(product){
-    alert("Anda memilih produk: " + product + "\nProses pembelian akan segera diproses.");
-    // Bisa redirect ke halaman detail produk
+    alert("Anda memilih produk: " + product + "\nSilakan lanjutkan proses pembelian.");
+  }
+  function openModal(type){
+    document.getElementById(type+'Modal').style.display='flex';
+  }
+  function closeModal(type){
+    document.getElementById(type+'Modal').style.display='none';
+  }
+  function submitTransfer(){
+    alert("Transfer saldo berhasil!");
+    closeModal('transfer');
+  }
+  function submitTarik(){
+    alert("Permintaan tarik saldo berhasil!");
+    closeModal('tarik');
   }
 </script>
 
