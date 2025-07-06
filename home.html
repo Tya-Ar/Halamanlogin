@@ -3,17 +3,11 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Layanan Digital - PPOB & E-Wallet</title>
+<title>Layanan Digital Lengkap - PPOB & E-Wallet</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  * {
-    margin:0; padding:0; box-sizing:border-box;
-    font-family:'Roboto',sans-serif;
-  }
-  body {
-    background:#f0f2f5;
-    color:#333;
-  }
+  * {margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
+  body {background:#f0f2f5;color:#333;}
   header {
     background:linear-gradient(135deg, #0d47a1, #1976d2);
     color:#fff;
@@ -24,9 +18,7 @@
     flex-wrap:wrap;
     border-bottom:3px solid #1565c0;
   }
-  header h1 {
-    font-size:22px;
-  }
+  header h1 {font-size:22px;}
   .actions {
     display:flex;
     gap:10px;
@@ -42,9 +34,7 @@
     font-size:14px;
     transition:background 0.3s;
   }
-  .btn-action:hover {
-    background:rgba(255,255,255,0.3);
-  }
+  .btn-action:hover {background:rgba(255,255,255,0.3);}
   .container {
     max-width:1200px;
     margin:0 auto;
@@ -60,15 +50,8 @@
     box-shadow:0 2px 8px rgba(0,0,0,0.1);
     margin-bottom:30px;
   }
-  .balance-card h2 {
-    font-size:18px;
-    color:#555;
-  }
-  .balance-amount {
-    font-size:22px;
-    color:#0d47a1;
-    font-weight:700;
-  }
+  .balance-card h2 {font-size:18px;color:#555;}
+  .balance-amount {font-size:22px;color:#0d47a1;font-weight:700;}
   .products {
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
@@ -81,7 +64,7 @@
     text-align:center;
     box-shadow:0 2px 8px rgba(0,0,0,0.08);
     cursor:pointer;
-    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    transition:transform 0.2s ease,box-shadow 0.2s ease;
   }
   .product:hover {
     transform:translateY(-4px);
@@ -97,20 +80,9 @@
     justify-content:center;
     margin:0 auto 10px auto;
   }
-  .icon-circle img {
-    width:30px;
-    height:30px;
-  }
-  .product strong {
-    display:block;
-    margin-top:5px;
-    color:#333;
-    font-weight:600;
-  }
-  .product span {
-    font-size:13px;
-    color:#777;
-  }
+  .icon-circle img {width:30px;height:30px;}
+  .product strong {display:block;margin-top:5px;color:#333;font-weight:600;}
+  .product span {font-size:13px;color:#777;}
   footer {
     text-align:center;
     padding:20px;
@@ -140,7 +112,7 @@
     color:#0d47a1;
     text-align:center;
   }
-  .modal-content input {
+  .modal-content input, .modal-content select {
     width:100%;
     padding:12px;
     margin:10px 0;
@@ -157,9 +129,7 @@
     border-radius:6px;
     cursor:pointer;
   }
-  .modal-content button:hover {
-    background:#1565c0;
-  }
+  .modal-content button:hover {background:#1565c0;}
   .close {
     float:right;
     font-size:22px;
@@ -171,8 +141,9 @@
 <body>
 
 <header>
-  <h1>Layanan Digital</h1>
+  <h1>Layanan Digital Lengkap</h1>
   <div class="actions">
+    <button class="btn-action" onclick="openModal('isi')">Isi Saldo</button>
     <button class="btn-action" onclick="openModal('transfer')">Transfer Saldo</button>
     <button class="btn-action" onclick="openModal('tarik')">Tarik Saldo</button>
   </div>
@@ -186,88 +157,36 @@
   <h2 style="margin-bottom:20px; color:#333;">Pilih Produk Digital</h2>
   <div class="products">
     <div class="product" onclick="buyProduct('Pulsa')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/phone.png"/>
-      </div>
-      <strong>Pulsa</strong>
-      <span>Isi Ulang</span>
+      <div class="icon-circle"><img src="https://img.icons8.com/color/96/phone.png"/></div>
+      <strong>Pulsa</strong><span>Isi Ulang</span>
     </div>
     <div class="product" onclick="buyProduct('Paket Data')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/wifi.png"/>
-      </div>
-      <strong>Paket Data</strong>
-      <span>Internet</span>
+      <div class="icon-circle"><img src="https://img.icons8.com/color/96/wifi.png"/></div>
+      <strong>Paket Data</strong><span>Internet</span>
     </div>
     <div class="product" onclick="buyProduct('Token Listrik')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/flash-on.png"/>
-      </div>
-      <strong>Token Listrik</strong>
-      <span>PLN Prabayar</span>
+      <div class="icon-circle"><img src="https://img.icons8.com/color/96/flash-on.png"/></div>
+      <strong>Token Listrik</strong><span>PLN Prabayar</span>
     </div>
     <div class="product" onclick="buyProduct('Voucher Game')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/controller.png"/>
-      </div>
-      <strong>Voucher Game</strong>
-      <span>Mobile & PC</span>
+      <div class="icon-circle"><img src="https://img.icons8.com/color/96/controller.png"/></div>
+      <strong>Voucher Game</strong><span>Mobile & PC</span>
     </div>
     <div class="product" onclick="buyProduct('E-Money')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/wallet.png"/>
-      </div>
-      <strong>E-Money</strong>
-      <span>Top Up</span>
+      <div class="icon-circle"><img src="https://img.icons8.com/color/96/wallet.png"/></div>
+      <strong>E-Money</strong><span>Top Up</span>
     </div>
     <div class="product" onclick="buyProduct('BPJS')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/hospital.png"/>
-      </div>
-      <strong>BPJS</strong>
-      <span>Pembayaran</span>
+      <div class="icon-circle"><img src="https://img.icons8.com/color/96/hospital.png"/></div>
+      <strong>BPJS</strong><span>Pembayaran</span>
     </div>
     <div class="product" onclick="buyProduct('PDAM')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/water.png"/>
-      </div>
-      <strong>PDAM</strong>
-      <span>Tagihan Air</span>
+      <div class="icon-circle"><img src="https://img.icons8.com/color/96/water.png"/></div>
+      <strong>PDAM</strong><span>Tagihan Air</span>
     </div>
     <div class="product" onclick="buyProduct('TV Kabel')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/retro-tv.png"/>
-      </div>
-      <strong>TV Kabel</strong>
-      <span>Indihome, dll.</span>
-    </div>
-    <div class="product" onclick="buyProduct('Streaming')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/video.png"/>
-      </div>
-      <strong>Streaming</strong>
-      <span>Netflix, dll.</span>
-    </div>
-    <div class="product" onclick="buyProduct('Pascabayar')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/bill.png"/>
-      </div>
-      <strong>Pascabayar</strong>
-      <span>Telkomsel, dll.</span>
-    </div>
-    <div class="product" onclick="buyProduct('Voucher Edukasi')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/book.png"/>
-      </div>
-      <strong>Voucher Edukasi</strong>
-      <span>Kursus Online</span>
-    </div>
-    <div class="product" onclick="buyProduct('Lainnya')">
-      <div class="icon-circle">
-        <img src="https://img.icons8.com/color/96/money.png"/>
-      </div>
-      <strong>Lainnya</strong>
-      <span>Multifinance</span>
+      <div class="icon-circle"><img src="https://img.icons8.com/color/96/retro-tv.png"/></div>
+      <strong>TV Kabel</strong><span>Indihome, dll.</span>
     </div>
   </div>
 </div>
@@ -276,7 +195,23 @@
   © 2025 PPOB & E-Wallet Lengkap. All rights reserved.
 </footer>
 
-<!-- Modal Transfer -->
+<!-- Modal Isi Saldo -->
+<div class="modal" id="isiModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('isi')">&times;</span>
+    <h3>Isi Saldo</h3>
+    <select>
+      <option>Pilih Metode Pembayaran</option>
+      <option>Bank Transfer</option>
+      <option>QRIS</option>
+      <option>E-Wallet</option>
+    </select>
+    <input type="number" placeholder="Jumlah Deposit"/>
+    <button onclick="submitIsi()">Deposit Sekarang</button>
+  </div>
+</div>
+
+<!-- Modal Transfer Saldo -->
 <div class="modal" id="transferModal">
   <div class="modal-content">
     <span class="close" onclick="closeModal('transfer')">&times;</span>
@@ -300,7 +235,7 @@
 
 <script>
 function buyProduct(product){
-  alert("Anda memilih produk: " + product + "\nSilakan lanjutkan transaksi.");
+  alert("Anda memilih produk: " + product);
 }
 function openModal(type){
   document.getElementById(type+'Modal').style.display='flex';
@@ -308,12 +243,16 @@ function openModal(type){
 function closeModal(type){
   document.getElementById(type+'Modal').style.display='none';
 }
+function submitIsi(){
+  alert("Permintaan deposit berhasil dikirim.");
+  closeModal('isi');
+}
 function submitTransfer(){
-  alert("Transfer saldo berhasil!");
+  alert("Transfer saldo berhasil.");
   closeModal('transfer');
 }
 function submitTarik(){
-  alert("Permintaan tarik saldo berhasil!");
+  alert("Permintaan tarik saldo berhasil.");
   closeModal('tarik');
 }
 </script>
