@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Produk Digital - PPOB & E-Wallet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Roboto',sans-serif;
+    }
+    body {
+      background:#f2f4f7;
+      color:#333;
+    }
+    header {
+      background:#0d47a1;
+      color:#fff;
+      padding:20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:3px solid #1565c0;
+    }
+    header h1 {
+      font-size:22px;
+    }
+    .balance {
+      font-size:16px;
+      background:#1565c0;
+      padding:8px 15px;
+      border-radius:20px;
+    }
+    .container {
+      max-width:1200px;
+      margin:0 auto;
+      padding:20px;
+    }
+    .products {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+      gap:15px;
+      margin-top:20px;
+    }
+    .product {
+      background:#fff;
+      padding:15px;
+      border-radius:10px;
+      text-align:center;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+      cursor:pointer;
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .product:hover {
+      transform:translateY(-3px);
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    }
+    .product img {
+      width:50px;
+      margin-bottom:10px;
+    }
+    .product span {
+      display:block;
+      font-size:14px;
+      margin-top:5px;
+      color:#555;
+    }
+    footer {
+      text-align:center;
+      padding:15px;
+      font-size:14px;
+      color:#777;
+      margin-top:30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Produk Digital</h1>
+  <div class="balance">Saldo: Rp 500.000</div>
+</header>
+
+<div class="container">
+  <h2 style="margin-top:10px; font-size:18px; color:#333;">Pilih Produk</h2>
+  <div class="products">
+    <div class="product" onclick="buyProduct('Pulsa')">
+      <img src="https://img.icons8.com/color/96/000000/phone.png"/>
+      <strong>Pulsa</strong>
+      <span>Isi Ulang Pulsa</span>
+    </div>
+    <div class="product" onclick="buyProduct('Paket Data')">
+      <img src="https://img.icons8.com/color/96/000000/wifi.png"/>
+      <strong>Paket Data</strong>
+      <span>Internet</span>
+    </div>
+    <div class="product" onclick="buyProduct('Token Listrik')">
+      <img src="https://img.icons8.com/color/96/000000/flash-on.png"/>
+      <strong>Token Listrik</strong>
+      <span>PLN Prabayar</span>
+    </div>
+    <div class="product" onclick="buyProduct('Voucher Game')">
+      <img src="https://img.icons8.com/color/96/000000/controller.png"/>
+      <strong>Voucher Game</strong>
+      <span>Mobile & PC</span>
+    </div>
+    <div class="product" onclick="buyProduct('Voucher Streaming')">
+      <img src="https://img.icons8.com/color/96/000000/video.png"/>
+      <strong>Voucher Streaming</strong>
+      <span>Netflix, VIU, dll.</span>
+    </div>
+    <div class="product" onclick="buyProduct('BPJS')">
+      <img src="https://img.icons8.com/color/96/000000/hospital.png"/>
+      <strong>BPJS</strong>
+      <span>Pembayaran</span>
+    </div>
+    <div class="product" onclick="buyProduct('E-Money')">
+      <img src="https://img.icons8.com/color/96/000000/wallet.png"/>
+      <strong>E-Money</strong>
+      <span>Top Up</span>
+    </div>
+    <div class="product" onclick="buyProduct('Tagihan PDAM')">
+      <img src="https://img.icons8.com/color/96/000000/water.png"/>
+      <strong>Tagihan PDAM</strong>
+      <span>Air Bersih</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2025 PPOB & E-Wallet. All rights reserved.
+</footer>
+
+<script>
+  function buyProduct(product){
+    alert("Anda memilih produk: " + product + "\nProses pembelian akan segera diproses.");
+    // Bisa redirect ke halaman detail produk
+  }
+</script>
+
+</body>
+</html>
