@@ -12,15 +12,13 @@
       box-sizing:border-box;
       font-family:'Roboto',sans-serif;
     }
-
     body, html {
       height:100%;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
       overflow-x:hidden;
       position:relative;
       color:#ffffff;
     }
-
     header {
       display:flex;
       justify-content:space-between;
@@ -32,12 +30,10 @@
       width:100%;
       z-index:10;
     }
-
     header h1 {
       font-size:24px;
       color:#00c6ff;
     }
-
     nav a {
       color:#ffffff;
       text-decoration:none;
@@ -45,11 +41,9 @@
       font-size:16px;
       transition:color 0.3s ease;
     }
-
     nav a:hover {
       color:#00c6ff;
     }
-
     .hero {
       height:100vh;
       display:flex;
@@ -61,27 +55,23 @@
       position:relative;
       z-index:2;
     }
-
     .hero h2 {
       font-size:40px;
       margin-bottom:20px;
       font-weight:700;
       text-shadow:0 0 10px rgba(0,0,0,0.7);
     }
-
     .hero p {
       font-size:18px;
       margin-bottom:40px;
       max-width:600px;
       color:rgba(255,255,255,0.8);
     }
-
     .hero-buttons {
       display:flex;
       gap:20px;
       flex-wrap:wrap;
     }
-
     .btn {
       background:#00c6ff;
       color:#fff;
@@ -94,12 +84,10 @@
       text-decoration:none;
       display:inline-block;
     }
-
     .btn:hover {
       background:#0072ff;
       transform:translateY(-3px);
     }
-
     footer {
       text-align:center;
       padding:20px;
@@ -108,7 +96,6 @@
       position:relative;
       z-index:2;
     }
-
     .pattern {
       position:absolute;
       top:0;
@@ -118,7 +105,6 @@
       z-index:0;
       overflow:hidden;
     }
-
     .particle {
       position:absolute;
       width:6px;
@@ -128,35 +114,22 @@
       opacity:0.3;
       animation:float 15s linear infinite;
     }
-
     @keyframes float {
-      0% {
-        transform:translateY(100vh) translateX(0);
-        opacity:0;
-      }
-      50% {
-        opacity:0.5;
-      }
-      100% {
-        transform:translateY(-10vh) translateX(30px);
-        opacity:0;
-      }
+      0% {transform:translateY(100vh) translateX(0); opacity:0;}
+      50% {opacity:0.5;}
+      100% {transform:translateY(-10vh) translateX(30px); opacity:0;}
     }
-
-    /* Modal Styles */
     .modal {
       display:none;
       position:fixed;
       z-index:20;
-      left:0;
-      top:0;
+      left:0; top:0;
       width:100%;
       height:100%;
       background:rgba(0,0,0,0.7);
       justify-content:center;
       align-items:center;
     }
-
     .modal-content {
       background:#1a2a3a;
       padding:30px;
@@ -165,19 +138,19 @@
       max-width:400px;
       position:relative;
       animation:fadeIn 0.3s ease;
+      text-align:left;
     }
-
     @keyframes fadeIn {
       from {opacity:0; transform:scale(0.9);}
       to {opacity:1; transform:scale(1);}
     }
-
     .modal-content h3 {
       margin-bottom:20px;
       color:#00c6ff;
+      text-align:center;
     }
-
-    .modal-content input {
+    .modal-content input,
+    .modal-content input[type="file"] {
       width:100%;
       padding:10px;
       margin:10px 0;
@@ -186,7 +159,6 @@
       background:rgba(255,255,255,0.1);
       color:#fff;
     }
-
     .modal-content button {
       width:100%;
       padding:10px;
@@ -198,11 +170,9 @@
       cursor:pointer;
       margin-top:10px;
     }
-
     .modal-content button:hover {
       background:#0072ff;
     }
-
     .close {
       position:absolute;
       top:10px;
@@ -211,7 +181,18 @@
       cursor:pointer;
       color:#ffffff;
     }
-
+    .small-text {
+      font-size:12px;
+      color:rgba(255,255,255,0.6);
+      margin-bottom:10px;
+    }
+    .message {
+      font-size:13px;
+      margin-top:10px;
+      display:none;
+    }
+    .error {color:#ffaaaa;}
+    .success {color:#aaffaa;}
   </style>
 </head>
 <body>
@@ -230,7 +211,7 @@
 
 <section class="hero">
   <h2>Layanan PPOB & SMM Panel Profesional</h2>
-  <p>Menyediakan solusi pembayaran online & social media marketing untuk mendukung bisnis Anda.</p>
+  <p>Solusi pembayaran online dan social media marketing terbaik untuk bisnis Anda.</p>
   <div class="hero-buttons">
     <a href="#" class="btn" onclick="openModal('login')">Login</a>
     <a href="#" class="btn" onclick="openModal('register')">Register</a>
@@ -249,6 +230,7 @@
     <input type="text" id="loginUsername" placeholder="Username" />
     <input type="password" id="loginPassword" placeholder="Password" />
     <button onclick="submitLogin()">Login</button>
+    <button onclick="resetPassword()" style="background:#ff5555;">Reset Password</button>
   </div>
 </div>
 
@@ -260,7 +242,10 @@
     <input type="text" id="regUsername" placeholder="Username" />
     <input type="email" id="regEmail" placeholder="Email" />
     <input type="password" id="regPassword" placeholder="Password" />
+    <input type="file" id="regIdentity" accept=".jpg,.jpeg,.png,.pdf" />
+    <div class="small-text">Upload KTP atau Identitas Resmi (JPG/PNG/PDF)</div>
     <button onclick="submitRegister()">Register</button>
+    <div class="message" id="regMessage"></div>
   </div>
 </div>
 
@@ -275,38 +260,56 @@
     pattern.appendChild(particle);
   }
 
-  // Modal functions
   function openModal(type) {
-    document.getElementById(type + 'Modal').style.display = 'flex';
+    document.getElementById(type+'Modal').style.display='flex';
   }
-
   function closeModal(type) {
-    document.getElementById(type + 'Modal').style.display = 'none';
+    document.getElementById(type+'Modal').style.display='none';
   }
 
   function submitLogin() {
-    const user = document.getElementById('loginUsername').value;
-    const pass = document.getElementById('loginPassword').value;
-    if (user && pass) {
-      alert('Login success!\nUsername: ' + user);
+    const user = document.getElementById('loginUsername').value.trim();
+    if (user) {
+      alert('Login sukses! Selamat datang, ' + user);
       closeModal('login');
-      window.location.href = 'https://tya-ar.github.io/webpanel/Login.html';
+      window.location.href='https://tya-ar.github.io/webpanel/home.html';
     } else {
-      alert('Please fill in all fields.');
+      alert('Silakan isi username.');
     }
+  }
+  function resetPassword() {
+    const waLink = 'https://wa.me/6281348421097?text=Halo%20Admin,%20saya%20ingin%20melakukan%20reset%20password.';
+    window.open(waLink,'_blank');
   }
 
   function submitRegister() {
-    const user = document.getElementById('regUsername').value;
-    const email = document.getElementById('regEmail').value;
-    const pass = document.getElementById('regPassword').value;
-    if (user && email && pass) {
-      alert('Register success!\nWelcome, ' + user);
-      closeModal('register');
-      window.location.href = 'https://tya-ar.github.io/webpanel/Register.html';
-    } else {
-      alert('Please fill in all fields.');
+    const user = document.getElementById('regUsername').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const pass = document.getElementById('regPassword').value.trim();
+    const file = document.getElementById('regIdentity').files[0];
+    const msg = document.getElementById('regMessage');
+    msg.style.display='none';
+    msg.textContent='';
+    msg.className='message';
+    if(!user || !email || !pass || !file){
+      showRegMessage('Semua kolom wajib diisi.', 'error');
+      return;
     }
+    if(pass.length<6){
+      showRegMessage('Password minimal 6 karakter.', 'error');
+      return;
+    }
+    showRegMessage('Registrasi berhasil! Verifikasi identitas akan diproses.', 'success');
+    setTimeout(()=>{
+      closeModal('register');
+      window.location.href='https://tya-ar.github.io/webpanel/Login.html';
+    },2000);
+  }
+  function showRegMessage(text,type){
+    const msg = document.getElementById('regMessage');
+    msg.textContent=text;
+    msg.classList.add(type);
+    msg.style.display='block';
   }
 </script>
 
