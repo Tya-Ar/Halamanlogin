@@ -7,164 +7,308 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Roboto',sans-serif;
     }
 
     body, html {
-      height: 100%;
+      height:100%;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #ffffff;
-      overflow-x: hidden;
+      overflow-x:hidden;
+      position:relative;
+      color:#ffffff;
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 50px;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(5px);
-      position: fixed;
-      width: 100%;
-      z-index: 10;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 50px;
+      background:rgba(0,0,0,0.3);
+      backdrop-filter:blur(5px);
+      position:fixed;
+      width:100%;
+      z-index:10;
     }
 
     header h1 {
-      font-size: 24px;
-      color: #00c6ff;
+      font-size:24px;
+      color:#00c6ff;
     }
 
     nav a {
-      color: #ffffff;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 16px;
-      transition: color 0.3s ease;
+      color:#ffffff;
+      text-decoration:none;
+      margin-left:20px;
+      font-size:16px;
+      transition:color 0.3s ease;
     }
 
     nav a:hover {
-      color: #00c6ff;
+      color:#00c6ff;
     }
 
     .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-      position: relative;
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:0 20px;
+      position:relative;
+      z-index:2;
     }
 
     .hero h2 {
-      font-size: 40px;
-      margin-bottom: 20px;
-      font-weight: 700;
-      line-height: 1.2;
-      text-shadow: 0 0 10px rgba(0,0,0,0.7);
+      font-size:40px;
+      margin-bottom:20px;
+      font-weight:700;
+      text-shadow:0 0 10px rgba(0,0,0,0.7);
     }
 
     .hero p {
-      font-size: 18px;
-      margin-bottom: 40px;
-      max-width: 600px;
-      color: rgba(255,255,255,0.8);
+      font-size:18px;
+      margin-bottom:40px;
+      max-width:600px;
+      color:rgba(255,255,255,0.8);
     }
 
     .hero-buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
     }
 
     .btn {
-      background: #00c6ff;
-      color: #fff;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 50px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
+      background:#00c6ff;
+      color:#fff;
+      padding:12px 30px;
+      border:none;
+      border-radius:50px;
+      font-size:16px;
+      cursor:pointer;
+      transition:background 0.3s ease, transform 0.3s ease;
+      text-decoration:none;
+      display:inline-block;
     }
 
     .btn:hover {
-      background: #0072ff;
-      transform: translateY(-3px);
+      background:#0072ff;
+      transform:translateY(-3px);
     }
 
     footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.6);
+      text-align:center;
+      padding:20px;
+      font-size:14px;
+      color:rgba(255,255,255,0.6);
+      position:relative;
+      z-index:2;
     }
 
     .pattern {
-      position: absolute;
-      top:0; left:0;
+      position:absolute;
+      top:0;
+      left:0;
       width:100%;
       height:100%;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: -1;
-      animation: movePattern 30s linear infinite;
+      z-index:0;
+      overflow:hidden;
     }
 
-    @keyframes movePattern {
-      from { background-position: 0 0; }
-      to { background-position: 1000px 1000px; }
+    .particle {
+      position:absolute;
+      width:6px;
+      height:6px;
+      background:#00c6ff;
+      border-radius:50%;
+      opacity:0.3;
+      animation:float 15s linear infinite;
     }
+
+    @keyframes float {
+      0% {
+        transform:translateY(100vh) translateX(0);
+        opacity:0;
+      }
+      50% {
+        opacity:0.5;
+      }
+      100% {
+        transform:translateY(-10vh) translateX(30px);
+        opacity:0;
+      }
+    }
+
+    /* Modal Styles */
+    .modal {
+      display:none;
+      position:fixed;
+      z-index:20;
+      left:0;
+      top:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.7);
+      justify-content:center;
+      align-items:center;
+    }
+
+    .modal-content {
+      background:#1a2a3a;
+      padding:30px;
+      border-radius:10px;
+      width:90%;
+      max-width:400px;
+      position:relative;
+      animation:fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0; transform:scale(0.9);}
+      to {opacity:1; transform:scale(1);}
+    }
+
+    .modal-content h3 {
+      margin-bottom:20px;
+      color:#00c6ff;
+    }
+
+    .modal-content input {
+      width:100%;
+      padding:10px;
+      margin:10px 0;
+      border:none;
+      border-radius:5px;
+      background:rgba(255,255,255,0.1);
+      color:#fff;
+    }
+
+    .modal-content button {
+      width:100%;
+      padding:10px;
+      border:none;
+      border-radius:5px;
+      background:#00c6ff;
+      color:#fff;
+      font-size:16px;
+      cursor:pointer;
+      margin-top:10px;
+    }
+
+    .modal-content button:hover {
+      background:#0072ff;
+    }
+
+    .close {
+      position:absolute;
+      top:10px;
+      right:15px;
+      font-size:20px;
+      cursor:pointer;
+      color:#ffffff;
+    }
+
   </style>
 </head>
 <body>
 
-  <div class="pattern"></div>
+<div class="pattern"></div>
 
-  <header>
-    <h1>PPOB & SMM Panel</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#" onclick="showAlert('Fitur PPOB')">PPOB</a>
-      <a href="#" onclick="showAlert('Fitur SMM')">SMM Panel</a>
-      <a href="#" onclick="showAlert('Kontak Kami')">Contact</a>
-    </nav>
-  </header>
+<header>
+  <h1>PPOB & SMM Panel</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">PPOB</a>
+    <a href="#">SMM Panel</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
 
-  <section class="hero">
-    <h2>Layanan PPOB & SMM Panel Profesional</h2>
-    <p>Kami menyediakan solusi pembayaran online dan social media marketing terbaik untuk mendukung perkembangan bisnis Anda secara maksimal.</p>
-    <div class="hero-buttons">
-      <a href="#" class="btn" onclick="login()">Login</a>
-      <a href="#" class="btn" onclick="register()">Register</a>
-    </div>
-  </section>
+<section class="hero">
+  <h2>Layanan PPOB & SMM Panel Profesional</h2>
+  <p>Menyediakan solusi pembayaran online & social media marketing untuk mendukung bisnis Anda.</p>
+  <div class="hero-buttons">
+    <a href="#" class="btn" onclick="openModal('login')">Login</a>
+    <a href="#" class="btn" onclick="openModal('register')">Register</a>
+  </div>
+</section>
 
-  <footer>
-    © 2025 Bisnis PPOB & SMM Panel. All rights reserved.
-  </footer>
+<footer>
+  © 2025 Bisnis PPOB & SMM Panel. All rights reserved.
+</footer>
 
-  <script>
-    function login() {
-      // Redirect otomatis ke halaman Login
+<!-- Modal Login -->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('login')">&times;</span>
+    <h3>Login</h3>
+    <input type="text" id="loginUsername" placeholder="Username" />
+    <input type="password" id="loginPassword" placeholder="Password" />
+    <button onclick="submitLogin()">Login</button>
+  </div>
+</div>
+
+<!-- Modal Register -->
+<div class="modal" id="registerModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('register')">&times;</span>
+    <h3>Register</h3>
+    <input type="text" id="regUsername" placeholder="Username" />
+    <input type="email" id="regEmail" placeholder="Email" />
+    <input type="password" id="regPassword" placeholder="Password" />
+    <button onclick="submitRegister()">Register</button>
+  </div>
+</div>
+
+<script>
+  // Floating particles
+  const pattern = document.querySelector('.pattern');
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.left = Math.random() * 100 + 'vw';
+    particle.style.animationDuration = 10 + Math.random() * 10 + 's';
+    pattern.appendChild(particle);
+  }
+
+  // Modal functions
+  function openModal(type) {
+    document.getElementById(type + 'Modal').style.display = 'flex';
+  }
+
+  function closeModal(type) {
+    document.getElementById(type + 'Modal').style.display = 'none';
+  }
+
+  function submitLogin() {
+    const user = document.getElementById('loginUsername').value;
+    const pass = document.getElementById('loginPassword').value;
+    if (user && pass) {
+      alert('Login success!\nUsername: ' + user);
+      closeModal('login');
       window.location.href = 'https://tya-ar.github.io/webpanel/Login.html';
+    } else {
+      alert('Please fill in all fields.');
     }
+  }
 
-    function register() {
-      alert('Halaman Register belum diimplementasikan.');
-      // Kalau nanti sudah ada halaman register, bisa diganti:
-      // window.location.href = 'https://tya-ar.github.io/webpanel/Register.html';
+  function submitRegister() {
+    const user = document.getElementById('regUsername').value;
+    const email = document.getElementById('regEmail').value;
+    const pass = document.getElementById('regPassword').value;
+    if (user && email && pass) {
+      alert('Register success!\nWelcome, ' + user);
+      closeModal('register');
+      window.location.href = 'https://tya-ar.github.io/webpanel/Register.html';
+    } else {
+      alert('Please fill in all fields.');
     }
+  }
+</script>
 
-    function showAlert(message) {
-      alert(message + ' belum tersedia.');
-    }
-  </script>
 </body>
 </html>
