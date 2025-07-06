@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Login - Digital Business</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  body, html {
+    height: 100%;
+    overflow: hidden;
+    background: #0f2027;
+    color: #fff;
+  }
+
+  /* Canvas full screen background */
+  #background-canvas {
+    position: absolute;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    z-index: -1;
+  }
+
+  .login-box {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+    margin-top: 10vh;
+    text-align: center;
+  }
+
+  .login-box h2 {
+    margin-bottom: 25px;
+    font-weight: 700;
+  }
+
+  .login-box input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+  }
+
+  .login-box input:focus {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .login-box button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #00c6ff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .login-box button:hover {
+    background: #0072ff;
+  }
+
+  .error-message {
+    margin-top: 10px;
+    color: #ffaaaa;
+    display: none;
+    font-size: 14px;
+  }
+
+  .footer {
+    margin-top: 15px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+  }
+</style>
+</head>
+<body>
+<canvas id="background-canvas"></canvas>
+
+<div class="login-box">
+  <h2>Welcome Back</h2>
+  <form onsubmit="return false;">
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="button" onclick="validateLogin()">Login</button>
+    <div id="error" class="error-message">Invalid username or password.</div>
+  </form>
+  <div class="footer">
+    © 2025 Your Business Name
+  </div>
+</div>
+
+<script>
+  // Digital network particles
+  const canvas = document.getElementById('background-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let width, height, particles;
+
+  function initCanvas() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    particles = [];
+    for (let i = 0; i < 100; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.7,
+        vy: (Math.random() - 0.5) * 0.7
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0,0,width,height);
+    for (let i = 0; i < particles.length; i++) {
+      let p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
+      ctx.fillStyle = '#00c6ff';
+      ctx.fill();
+
+      // Draw lines to nearby particles
+      for (let j = i+1; j < particles.length; j++) {
+        let p2 = particles[j];
+        const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+        if (dist < 120) {
+          ctx.strokeStyle = 'rgba(0,198,255,' + (1 - dist / 120) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', initCanvas);
+  initCanvas();
+  animate();
+
+  // Validate login
+  function validateLogin() {
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const errorDiv = document.getElementById('error');
+
+    if (username === 'admin' && password === '12345') {
+      window.location.href = 'https://tya-ar.github.io/Tesweb/';
+    } else {
+      errorDiv.style.display = 'block';
+    }
+  }
+</script>
+</body>
+</html>
