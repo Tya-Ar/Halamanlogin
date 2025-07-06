@@ -80,16 +80,11 @@
   .link:hover {
     color: #ffffff;
   }
-  .error-message, .success-message {
+  .success-message {
     margin-top: 10px;
+    color: #aaffaa;
     font-size: 14px;
     display: none;
-  }
-  .error-message {
-    color: #ffaaaa;
-  }
-  .success-message {
-    color: #aaffaa;
   }
   .footer {
     margin-top: 15px;
@@ -109,7 +104,6 @@
     <button type="button" onclick="validateLogin()">Login</button>
     <a href="#" class="link" onclick="resetPassword()">Reset Password via WhatsApp</a>
     <a href="#" class="link" onclick="showChangePassword()">Change Password</a>
-    <div id="error" class="error-message">Invalid username or password.</div>
   </form>
   <div class="footer">
     © 2025 Your Business Name
@@ -119,12 +113,11 @@
 <div class="login-box" id="change-password-form" style="display:none;">
   <h2>Change Password</h2>
   <form onsubmit="return false;">
-    <input type="password" id="old-password" placeholder="Current Password" required />
-    <input type="password" id="new-password" placeholder="New Password" required />
-    <input type="password" id="confirm-password" placeholder="Confirm New Password" required />
+    <input type="password" id="old-password" placeholder="Current Password" />
+    <input type="password" id="new-password" placeholder="New Password" />
+    <input type="password" id="confirm-password" placeholder="Confirm New Password" />
     <button type="button" onclick="changePassword()">Update Password</button>
     <a href="#" class="link" onclick="backToLogin()">Back to Login</a>
-    <div id="change-error" class="error-message"></div>
     <div id="change-success" class="success-message"></div>
   </form>
 </div>
@@ -184,74 +177,39 @@
   initCanvas();
   animate();
 
-  // Simulated password storage
-  let currentPassword = '12345';
-
+  // Login always succeeds
   function validateLogin() {
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
-    const errorDiv = document.getElementById('error');
-
-    if (username === 'admin' && password === currentPassword) {
-      window.location.href = 'https://tya-ar.github.io/Tesweb/';
-    } else {
-      errorDiv.style.display = 'block';
-    }
+    window.location.href = 'https://tya-ar.github.io/Tesweb/';
   }
 
+  // Reset password via WhatsApp
   function resetPassword() {
     const url = 'https://wa.me/6281348421097?text=' + encodeURIComponent('hallo min, saya ingin melakukan reset pasword');
     window.open(url, '_blank');
   }
 
+  // Show Change Password Form
   function showChangePassword() {
     document.getElementById('login-form').style.display = 'none';
     document.getElementById('change-password-form').style.display = 'block';
-  }
-
-  function backToLogin() {
-    document.getElementById('change-password-form').style.display = 'none';
-    document.getElementById('login-form').style.display = 'block';
-    document.getElementById('change-error').style.display = 'none';
     document.getElementById('change-success').style.display = 'none';
   }
 
+  // Back to Login
+  function backToLogin() {
+    document.getElementById('change-password-form').style.display = 'none';
+    document.getElementById('login-form').style.display = 'block';
+  }
+
+  // Change password always succeeds
   function changePassword() {
-    const oldPass = document.getElementById('old-password').value.trim();
-    const newPass = document.getElementById('new-password').value.trim();
-    const confirmPass = document.getElementById('confirm-password').value.trim();
-    const errorDiv = document.getElementById('change-error');
     const successDiv = document.getElementById('change-success');
-
-    errorDiv.style.display = 'none';
-    successDiv.style.display = 'none';
-
-    if (oldPass !== currentPassword) {
-      errorDiv.textContent = 'Current password is incorrect.';
-      errorDiv.style.display = 'block';
-      return;
-    }
-
-    if (newPass.length < 4) {
-      errorDiv.textContent = 'New password must be at least 4 characters.';
-      errorDiv.style.display = 'block';
-      return;
-    }
-
-    if (newPass !== confirmPass) {
-      errorDiv.textContent = 'New passwords do not match.';
-      errorDiv.style.display = 'block';
-      return;
-    }
-
-    currentPassword = newPass;
     successDiv.textContent = 'Password successfully updated!';
     successDiv.style.display = 'block';
 
-    // Optionally return to login after delay
     setTimeout(() => {
       backToLogin();
-    }, 2000);
+    }, 1500);
   }
 </script>
 </body>
