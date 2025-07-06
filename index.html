@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Login - Digital Business</title>
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
   * {
@@ -13,14 +12,12 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
   }
-
   body, html {
     height: 100%;
     overflow: hidden;
     background: #0f2027;
     color: #fff;
   }
-
   #background-canvas {
     position: absolute;
     top:0; left:0;
@@ -28,7 +25,6 @@
     height:100%;
     z-index: -1;
   }
-
   .login-box {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
@@ -42,12 +38,10 @@
     margin-top: 10vh;
     text-align: center;
   }
-
   .login-box h2 {
     margin-bottom: 25px;
     font-weight: 700;
   }
-
   .login-box input {
     width: 100%;
     padding: 12px 15px;
@@ -57,11 +51,9 @@
     outline: none;
     font-size: 16px;
   }
-
   .login-box input:focus {
     background: rgba(255, 255, 255, 0.2);
   }
-
   .login-box button {
     width: 100%;
     padding: 12px;
@@ -74,31 +66,31 @@
     transition: background 0.3s ease;
     margin-top: 10px;
   }
-
   .login-box button:hover {
     background: #0072ff;
   }
-
-  .reset-link {
+  .link {
     display: block;
-    margin-top: 15px;
+    margin-top: 10px;
     color: #00c6ff;
     font-size: 14px;
     text-decoration: none;
     transition: color 0.3s ease;
   }
-
-  .reset-link:hover {
+  .link:hover {
     color: #ffffff;
   }
-
-  .error-message {
+  .error-message, .success-message {
     margin-top: 10px;
-    color: #ffaaaa;
-    display: none;
     font-size: 14px;
+    display: none;
   }
-
+  .error-message {
+    color: #ffaaaa;
+  }
+  .success-message {
+    color: #aaffaa;
+  }
   .footer {
     margin-top: 15px;
     font-size: 14px;
@@ -109,18 +101,32 @@
 <body>
 <canvas id="background-canvas"></canvas>
 
-<div class="login-box">
+<div class="login-box" id="login-form">
   <h2>Welcome Back</h2>
   <form onsubmit="return false;">
     <input type="text" id="username" placeholder="Username" required />
     <input type="password" id="password" placeholder="Password" required />
     <button type="button" onclick="validateLogin()">Login</button>
-    <a href="#" class="reset-link" onclick="resetPassword()">Reset Password via WhatsApp</a>
+    <a href="#" class="link" onclick="resetPassword()">Reset Password via WhatsApp</a>
+    <a href="#" class="link" onclick="showChangePassword()">Change Password</a>
     <div id="error" class="error-message">Invalid username or password.</div>
   </form>
   <div class="footer">
     © 2025 Your Business Name
   </div>
+</div>
+
+<div class="login-box" id="change-password-form" style="display:none;">
+  <h2>Change Password</h2>
+  <form onsubmit="return false;">
+    <input type="password" id="old-password" placeholder="Current Password" required />
+    <input type="password" id="new-password" placeholder="New Password" required />
+    <input type="password" id="confirm-password" placeholder="Confirm New Password" required />
+    <button type="button" onclick="changePassword()">Update Password</button>
+    <a href="#" class="link" onclick="backToLogin()">Back to Login</a>
+    <div id="change-error" class="error-message"></div>
+    <div id="change-success" class="success-message"></div>
+  </form>
 </div>
 
 <script>
@@ -178,12 +184,15 @@
   initCanvas();
   animate();
 
+  // Simulated password storage
+  let currentPassword = '12345';
+
   function validateLogin() {
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
     const errorDiv = document.getElementById('error');
 
-    if (username === 'admin' && password === '12345') {
+    if (username === 'admin' && password === currentPassword) {
       window.location.href = 'https://tya-ar.github.io/Tesweb/';
     } else {
       errorDiv.style.display = 'block';
@@ -193,6 +202,56 @@
   function resetPassword() {
     const url = 'https://wa.me/6281348421097?text=' + encodeURIComponent('hallo min, saya ingin melakukan reset pasword');
     window.open(url, '_blank');
+  }
+
+  function showChangePassword() {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('change-password-form').style.display = 'block';
+  }
+
+  function backToLogin() {
+    document.getElementById('change-password-form').style.display = 'none';
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('change-error').style.display = 'none';
+    document.getElementById('change-success').style.display = 'none';
+  }
+
+  function changePassword() {
+    const oldPass = document.getElementById('old-password').value.trim();
+    const newPass = document.getElementById('new-password').value.trim();
+    const confirmPass = document.getElementById('confirm-password').value.trim();
+    const errorDiv = document.getElementById('change-error');
+    const successDiv = document.getElementById('change-success');
+
+    errorDiv.style.display = 'none';
+    successDiv.style.display = 'none';
+
+    if (oldPass !== currentPassword) {
+      errorDiv.textContent = 'Current password is incorrect.';
+      errorDiv.style.display = 'block';
+      return;
+    }
+
+    if (newPass.length < 4) {
+      errorDiv.textContent = 'New password must be at least 4 characters.';
+      errorDiv.style.display = 'block';
+      return;
+    }
+
+    if (newPass !== confirmPass) {
+      errorDiv.textContent = 'New passwords do not match.';
+      errorDiv.style.display = 'block';
+      return;
+    }
+
+    currentPassword = newPass;
+    successDiv.textContent = 'Password successfully updated!';
+    successDiv.style.display = 'block';
+
+    // Optionally return to login after delay
+    setTimeout(() => {
+      backToLogin();
+    }, 2000);
   }
 </script>
 </body>
