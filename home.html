@@ -17,7 +17,6 @@ header {
   align-items:center;
   position:sticky;
   top:0;
-  z-index:10;
 }
 header h1 {font-size:18px;}
 nav button {
@@ -30,7 +29,6 @@ nav button {
   font-size:13px;
   margin-left:5px;
 }
-nav button:hover {background:rgba(255,255,255,0.3);}
 .dashboard {
   display:grid;
   grid-template-columns:1fr;
@@ -70,6 +68,38 @@ nav button:hover {background:rgba(255,255,255,0.3);}
   display:flex;
   flex-direction:column;
   gap:20px;
+}
+.card-saldo {
+  background:#1976d2;
+  color:#fff;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.card-saldo:hover {background:#1565c0;}
+.card-saldo h2 {font-size:16px;}
+.saldo-amount {font-size:20px; font-weight:700;}
+.saldo-detail {
+  display:none;
+  background:#e3f2fd;
+  color:#333;
+  border-radius:0 0 10px 10px;
+  padding:10px;
+}
+.saldo-detail p {margin:5px 0;}
+.saldo-detail button {
+  background:#0d47a1;
+  color:#fff;
+  border:none;
+  padding:6px 12px;
+  border-radius:5px;
+  margin-top:8px;
+  cursor:pointer;
+  font-size:12px;
 }
 .section {
   background:#fff;
@@ -122,13 +152,19 @@ footer {text-align:center;padding:15px;color:#777;}
     </div>
   </div>
   <div class="main">
-    <!-- Beranda -->
-    <div class="section" id="home-section">
-      <h3>Selamat Datang!</h3>
-      <p>Gunakan layanan PPOB dan SMM Panel terpercaya.</p>
+    <!-- Card Saldo -->
+    <div class="card-saldo" onclick="toggleSaldoDetail()">
+      <h2>Saldo Anda</h2>
+      <div class="saldo-amount">Rp500.000</div>
+    </div>
+    <div class="saldo-detail" id="saldo-detail">
+      <p><strong>Saldo Tersedia:</strong> Rp500.000</p>
+      <p><strong>Saldo Tertahan:</strong> Rp0</p>
+      <button onclick="alert('Isi saldo!')">Isi Saldo</button>
+      <button onclick="alert('Tarik saldo!')">Tarik Saldo</button>
     </div>
 
-    <!-- Produk Digital Selalu Tampil -->
+    <!-- Produk Digital -->
     <div class="section">
       <h3>Produk Digital</h3>
       <div class="products-grid">
@@ -145,17 +181,11 @@ footer {text-align:center;padding:15px;color:#777;}
     <!-- Sections lainnya -->
     <div class="section" id="riwayat-section" style="display:none;">
       <h3>Riwayat Pesanan</h3>
-      <table>
-        <tr><th>Tanggal</th><th>Produk</th><th>Status</th></tr>
-        <tr><td>07/07/2025</td><td>Pulsa</td><td>Sukses</td></tr>
-      </table>
+      <table><tr><th>Tanggal</th><th>Produk</th><th>Status</th></tr><tr><td>07/07/2025</td><td>Pulsa</td><td>Sukses</td></tr></table>
     </div>
     <div class="section" id="deposit-section" style="display:none;">
       <h3>Riwayat Deposit</h3>
-      <table>
-        <tr><th>Tanggal</th><th>Metode</th><th>Jumlah</th><th>Status</th></tr>
-        <tr><td>06/07/2025</td><td>Transfer</td><td>Rp200.000</td><td>Sukses</td></tr>
-      </table>
+      <table><tr><th>Tanggal</th><th>Metode</th><th>Jumlah</th><th>Status</th></tr><tr><td>06/07/2025</td><td>Transfer</td><td>Rp200.000</td><td>Sukses</td></tr></table>
     </div>
     <div class="section" id="profil-section" style="display:none;">
       <h3>Profil Akun</h3>
@@ -165,22 +195,28 @@ footer {text-align:center;padding:15px;color:#777;}
     </div>
     <div class="section" id="pengaturan-section" style="display:none;">
       <h3>Pengaturan Akun</h3>
-      <p><button onclick="alert('Fitur Ganti Password')">Ganti Password</button></p>
+      <p><button onclick="alert('Ganti Password')">Ganti Password</button></p>
     </div>
     <div class="section" id="bantuan-section" style="display:none;">
       <h3>Bantuan</h3>
-      <p>Hubungi CS via WhatsApp atau email support@example.com.</p>
+      <p>Hubungi CS di WhatsApp 08123456789 atau email support@example.com.</p>
     </div>
   </div>
 </div>
+
 <footer>© 2025 PPOB Dashboard</footer>
 
 <script>
+function toggleSaldoDetail(){
+  const detail=document.getElementById('saldo-detail');
+  detail.style.display=detail.style.display==='block'?'none':'block';
+}
 function showSection(s){
-  const sections=["home","riwayat","deposit","profil","pengaturan","bantuan"];
+  const sections=["riwayat","deposit","profil","pengaturan","bantuan"];
   sections.forEach(id=>{
     document.getElementById(id+"-section").style.display="none";
   });
+  if(s==='home') return;
   document.getElementById(s+"-section").style.display="block";
 }
 </script>
