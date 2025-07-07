@@ -130,6 +130,35 @@ nav button {
 .product img {width:28px;margin-bottom:5px;}
 .product strong {font-size:13px;}
 footer {text-align:center;padding:15px;color:#777;}
+/* Modal QRIS */
+#qrisModal {
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+#qrisModal .content {
+  background:#fff;
+  padding:20px;
+  border-radius:8px;
+  text-align:center;
+  max-width:300px;
+}
+#qrisModal .content h3 {margin-bottom:10px;}
+#qrisModal .content img {width:200px; margin:10px 0;}
+#qrisModal .content button {
+  background:#0d47a1;
+  color:#fff;
+  border:none;
+  padding:8px 16px;
+  border-radius:4px;
+  cursor:pointer;
+}
 </style>
 </head>
 <body>
@@ -164,6 +193,7 @@ footer {text-align:center;padding:15px;color:#777;}
       <p><strong>Saldo Tertahan:</strong> Rp0</p>
       <button onclick="alert('Isi saldo!')">Isi Saldo</button>
       <button onclick="alert('Tarik saldo!')">Tarik Saldo</button>
+      <button onclick="openQris()">Bayar via QRIS</button>
     </div>
 
     <!-- Produk Digital -->
@@ -208,6 +238,16 @@ footer {text-align:center;padding:15px;color:#777;}
 
 <footer>© 2025 PPOB Dashboard</footer>
 
+<!-- Modal QRIS -->
+<div id="qrisModal">
+  <div class="content">
+    <h3>Scan QRIS untuk Pembayaran</h3>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/QRIS_Logo.svg/256px-QRIS_Logo.svg.png" alt="QRIS">
+    <br>
+    <button onclick="closeQris()">Tutup</button>
+  </div>
+</div>
+
 <script>
 function toggleSaldoDetail(){
   const detail=document.getElementById('saldo-detail');
@@ -220,6 +260,12 @@ function showSection(s){
   });
   if(s==='home') return;
   document.getElementById(s+"-section").style.display="block";
+}
+function openQris(){
+  document.getElementById('qrisModal').style.display='flex';
+}
+function closeQris(){
+  document.getElementById('qrisModal').style.display='none';
 }
 </script>
 </body>
