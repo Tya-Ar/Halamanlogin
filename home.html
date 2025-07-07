@@ -11,7 +11,7 @@ body {background:#f4f6fb; color:#333; font-size:13px;}
 header {
   background:#0d47a1; color:#fff; padding:10px 15px;
   display:flex; justify-content:space-between; align-items:center;
-  position:sticky; top:0;
+  position:sticky; top:0; z-index:10;
 }
 header h1 {font-size:15px;}
 nav button {
@@ -153,7 +153,6 @@ footer {text-align:center; padding:10px; color:#777; font-size:12px;}
     <div class="section">
       <h3>Produk Digital</h3>
       <div class="products-grid">
-        <!-- Produk digital (sama seperti sebelumnya) -->
         <div class="product"><img src="https://img.icons8.com/color/96/phone.png"/><strong>Pulsa</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Paket Data</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/flash-on.png"/><strong>Token PLN</strong></div>
@@ -204,8 +203,20 @@ function showSection(s){
         <h3>Riwayat Deposit</h3>
         <table>
           <tr><th>Tanggal</th><th>Metode</th><th>Pengirim</th><th>Jumlah</th><th>Status</th></tr>
-          <tr><td>06/07/2025</td><td>Transfer Bank</td><td>-</td><td>Rp200.000</td><td>Sukses</td></tr>
-          <tr><td>07/07/2025 05:22:31</td><td>Transfer Masuk</td><td>Username: s*****<br>Email: sty*****@...<br>No HP: ****877</td><td>Rp765.000.000</td><td>Sukses</td></tr>
+          <tr>
+            <td>05/06/2025 22:45:28</td>
+            <td>Transfer Bank BCA</td>
+            <td>-</td>
+            <td>Rp200.000</td>
+            <td>Sukses</td>
+          </tr>
+          <tr>
+            <td>07/07/2025 05:22:31</td>
+            <td>Transfer Masuk</td>
+            <td>Username: sty*****</td>
+            <td>Rp765.000.000</td>
+            <td>Sukses</td>
+          </tr>
         </table>
       </div>`,
     profil:'<div class="section"><h3>Profil Akun</h3><p><strong>Nama:</strong> RIZAL EPENDI</p><p><strong>Email:</strong> Rizalefendi93307@gmail.com</p><p><strong>No HP:</strong> 081348421097</p></div>',
