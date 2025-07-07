@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>PPOB Dashboard Fintech</title>
+<title>PPOB Dashboard Profesional</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto',sans-serif;}
@@ -99,19 +99,16 @@ nav button:hover {background:rgba(255,255,255,0.3);}
   font-size:13px;
 }
 .btn-action:hover {background:#e3f2fd;}
-.products-carousel {
-  display:flex;
-  overflow-x:auto;
+.products-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
   gap:15px;
-  padding-bottom:10px;
 }
 .product {
-  min-width:120px;
   background:#fff;
   border-radius:10px;
   padding:15px;
   text-align:center;
-  flex-shrink:0;
   box-shadow:0 2px 6px rgba(0,0,0,0.1);
   cursor:pointer;
   transition:transform 0.2s;
@@ -196,11 +193,11 @@ footer {text-align:center;padding:15px;color:#777;}
           <button class="btn-action" onclick="openModal('tarik')">Tarik</button>
         </div>
       </div>
-      <div class="products-carousel">
+      <div class="products-grid">
         <div class="product" onclick="buyProduct('Pulsa')"><img src="https://img.icons8.com/color/96/phone.png"/><strong>Pulsa</strong></div>
-        <div class="product" onclick="buyProduct('Paket Data')"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Data</strong></div>
-        <div class="product" onclick="buyProduct('PLN')"><img src="https://img.icons8.com/color/96/flash-on.png"/><strong>PLN</strong></div>
-        <div class="product" onclick="buyProduct('Game')"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Game</strong></div>
+        <div class="product" onclick="buyProduct('Paket Data')"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Paket Data</strong></div>
+        <div class="product" onclick="buyProduct('Token Listrik')"><img src="https://img.icons8.com/color/96/flash-on.png"/><strong>PLN</strong></div>
+        <div class="product" onclick="buyProduct('Voucher Game')"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Game</strong></div>
         <div class="product" onclick="buyProduct('E-Money')"><img src="https://img.icons8.com/color/96/wallet.png"/><strong>E-Money</strong></div>
         <div class="product" onclick="buyProduct('BPJS')"><img src="https://img.icons8.com/color/96/hospital.png"/><strong>BPJS</strong></div>
         <div class="product" onclick="buyProduct('PDAM')"><img src="https://img.icons8.com/color/96/water.png"/><strong>PDAM</strong></div>
