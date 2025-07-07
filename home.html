@@ -114,7 +114,6 @@ footer {text-align:center;padding:15px;color:#777;}
     <h3>Menu</h3>
     <div class="menu-grid">
       <div class="menu-item" onclick="showSection('home')"><img src="https://img.icons8.com/ios-filled/50/home.png"/><span>Beranda</span></div>
-      <div class="menu-item" onclick="showSection('produk')"><img src="https://img.icons8.com/ios-filled/50/shopping-cart.png"/><span>Produk Digital</span></div>
       <div class="menu-item" onclick="showSection('riwayat')"><img src="https://img.icons8.com/ios-filled/50/order-history.png"/><span>Pesanan</span></div>
       <div class="menu-item" onclick="showSection('deposit')"><img src="https://img.icons8.com/ios-filled/50/money.png"/><span>Riwayat Deposit</span></div>
       <div class="menu-item" onclick="showSection('profil')"><img src="https://img.icons8.com/ios-filled/50/user.png"/><span>Profil Akun</span></div>
@@ -126,10 +125,11 @@ footer {text-align:center;padding:15px;color:#777;}
     <!-- Beranda -->
     <div class="section" id="home-section">
       <h3>Selamat Datang!</h3>
-      <p>Gunakan layanan PPOB dan SMM panel terbaik dengan saldo aman dan transaksi cepat.</p>
+      <p>Gunakan layanan PPOB dan SMM Panel terpercaya.</p>
     </div>
-    <!-- Produk -->
-    <div class="section" id="produk-section" style="display:none;">
+
+    <!-- Produk Digital Selalu Tampil -->
+    <div class="section">
       <h3>Produk Digital</h3>
       <div class="products-grid">
         <div class="product"><img src="https://img.icons8.com/color/96/phone.png"/><strong>Pulsa</strong></div>
@@ -138,49 +138,46 @@ footer {text-align:center;padding:15px;color:#777;}
         <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Voucher Game</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/wallet.png"/><strong>E-Money</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/water.png"/><strong>PDAM</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/video.png"/><strong>Streaming</strong></div>
       </div>
     </div>
-    <!-- Pesanan -->
+
+    <!-- Sections lainnya -->
     <div class="section" id="riwayat-section" style="display:none;">
       <h3>Riwayat Pesanan</h3>
       <table>
         <tr><th>Tanggal</th><th>Produk</th><th>Status</th></tr>
-        <tr><td>07/07/2025</td><td>Pulsa 50rb</td><td>Sukses</td></tr>
-        <tr><td>06/07/2025</td><td>Paket Data</td><td>Sukses</td></tr>
+        <tr><td>07/07/2025</td><td>Pulsa</td><td>Sukses</td></tr>
       </table>
     </div>
-    <!-- Deposit -->
     <div class="section" id="deposit-section" style="display:none;">
       <h3>Riwayat Deposit</h3>
       <table>
         <tr><th>Tanggal</th><th>Metode</th><th>Jumlah</th><th>Status</th></tr>
-        <tr><td>05/07/2025</td><td>Transfer</td><td>Rp200.000</td><td>Sukses</td></tr>
+        <tr><td>06/07/2025</td><td>Transfer</td><td>Rp200.000</td><td>Sukses</td></tr>
       </table>
     </div>
-    <!-- Profil -->
     <div class="section" id="profil-section" style="display:none;">
       <h3>Profil Akun</h3>
       <p><strong>Nama:</strong> Nama Pengguna</p>
       <p><strong>Email:</strong> user@example.com</p>
       <p><strong>No HP:</strong> 08123456789</p>
     </div>
-    <!-- Pengaturan -->
     <div class="section" id="pengaturan-section" style="display:none;">
       <h3>Pengaturan Akun</h3>
       <p><button onclick="alert('Fitur Ganti Password')">Ganti Password</button></p>
     </div>
-    <!-- Bantuan -->
     <div class="section" id="bantuan-section" style="display:none;">
       <h3>Bantuan</h3>
-      <p>Hubungi CS kami melalui WhatsApp 08123456789 atau email support@example.com.</p>
+      <p>Hubungi CS via WhatsApp atau email support@example.com.</p>
     </div>
   </div>
 </div>
-<footer>© 2025 PPOB Dashboard Lengkap</footer>
+<footer>© 2025 PPOB Dashboard</footer>
 
 <script>
 function showSection(s){
-  const sections=["home","produk","riwayat","deposit","profil","pengaturan","bantuan"];
+  const sections=["home","riwayat","deposit","profil","pengaturan","bantuan"];
   sections.forEach(id=>{
     document.getElementById(id+"-section").style.display="none";
   });
