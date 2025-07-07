@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>PPOB Dashboard Lengkap</title>
+<title>Dashboard PPOB Lengkap</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto',sans-serif;}
@@ -38,9 +38,7 @@ nav button {
   padding:8px; margin-bottom:12px; cursor:pointer;
   transition:background 0.3s;
 }
-.scan-qris-professional:hover {
-  background:linear-gradient(90deg,#0d47a1,#1976d2);
-}
+.scan-qris-professional:hover {background:linear-gradient(90deg,#0d47a1,#1976d2);}
 .scan-qris-professional img {width:18px; margin-right:6px;}
 .menu-grid {
   display:grid; grid-template-columns:repeat(2,1fr); gap:8px;
@@ -77,10 +75,6 @@ nav button {
   box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
 .section h3 {color:#0d47a1; font-size:14px; margin-bottom:8px;}
-.section table {width:100%; border-collapse:collapse;}
-.section th,.section td {
-  font-size:12px; padding:4px; border-bottom:1px solid #eee;
-}
 .products-grid {
   display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:10px;
 }
@@ -93,23 +87,30 @@ nav button {
 .product img {width:24px; margin-bottom:3px;}
 .product strong {font-size:12px;}
 footer {text-align:center; padding:10px; color:#777; font-size:12px;}
-#qrisModal {
+#qrisModal, #voucherModal {
   display:none; position:fixed; top:0; left:0;
   width:100%; height:100%;
   background:rgba(0,0,0,0.7);
   justify-content:center; align-items:center;
   z-index:1000;
 }
-#qrisModal .content {
+#qrisModal .content, #voucherModal .content {
   background:#fff; padding:15px; border-radius:6px;
-  text-align:center; max-width:280px;
+  text-align:center; max-width:320px;
 }
-#qrisModal .content h3 {margin-bottom:8px; font-size:14px;}
-#qrisModal .content img {width:180px; margin:8px 0;}
-#qrisModal .content button {
+#qrisModal .content img, #voucherModal .content img {width:180px; margin:8px 0;}
+#qrisModal .content button, #voucherModal .content button {
   background:#0d47a1; color:#fff; border:none;
   padding:6px 12px; border-radius:4px; cursor:pointer; font-size:12px;
 }
+.voucher-grid {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:10px;
+}
+.voucher-item {
+  background:#f1f3f6; padding:6px; border-radius:6px;
+  font-size:11px; cursor:pointer; transition:background 0.3s;
+}
+.voucher-item:hover {background:#e3f2fd;}
 </style>
 </head>
 <body>
@@ -156,15 +157,19 @@ footer {text-align:center; padding:10px; color:#777; font-size:12px;}
         <div class="product"><img src="https://img.icons8.com/color/96/phone.png"/><strong>Pulsa</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Paket Data</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/flash-on.png"/><strong>Token PLN</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Voucher MLBB</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Voucher Free Fire</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Voucher PUBG</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Steam Wallet</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>PlayStation Network</strong></div>
+        <div class="product" onclick="openVoucher()"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Voucher Game</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/google-play.png"/><strong>Google Play</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/mac-os.png"/><strong>App Store</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/music.png"/><strong>Spotify Premium</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/wallet.png"/><strong>E-Money Top Up</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/wallet.png"/><strong>E-Money</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/water.png"/><strong>PDAM</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/electrical.png"/><strong>PLN Non-Taglis</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/tv.png"/><strong>Internet & TV Kabel</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/phone-office.png"/><strong>Telkom</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/health-book.png"/><strong>BPJS</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/iphone.png"/><strong>Pascabayar</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/insurance.png"/><strong>Asuransi</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/gas.png"/><strong>Gas</strong></div>
       </div>
     </div>
   </div>
@@ -181,10 +186,41 @@ footer {text-align:center; padding:10px; color:#777; font-size:12px;}
   </div>
 </div>
 
+<div id="voucherModal">
+  <div class="content">
+    <h3>Pilih Voucher Game</h3>
+    <div class="voucher-grid">
+      <div class="voucher-item">Mobile Legends</div>
+      <div class="voucher-item">Free Fire</div>
+      <div class="voucher-item">PUBG</div>
+      <div class="voucher-item">Valorant</div>
+      <div class="voucher-item">Genshin Impact</div>
+      <div class="voucher-item">COD Mobile</div>
+      <div class="voucher-item">Steam Wallet</div>
+      <div class="voucher-item">PlayStation</div>
+      <div class="voucher-item">Xbox</div>
+      <div class="voucher-item">Nintendo</div>
+    </div>
+    <button onclick="closeVoucher()">Tutup</button>
+  </div>
+</div>
+
 <script>
 function toggleSaldoDetail(){
   const detail=document.getElementById('saldo-detail');
   detail.style.display=detail.style.display==='block'?'none':'block';
+}
+function openQris(){
+  document.getElementById('qrisModal').style.display='flex';
+}
+function closeQris(){
+  document.getElementById('qrisModal').style.display='none';
+}
+function openVoucher(){
+  document.getElementById('voucherModal').style.display='flex';
+}
+function closeVoucher(){
+  document.getElementById('voucherModal').style.display='none';
 }
 function showSection(s){
   const container=document.getElementById('dynamic-section');
@@ -224,12 +260,6 @@ function showSection(s){
     bantuan:'<div class="section"><h3>Bantuan</h3><p>Hubungi CS di WhatsApp 08123456789 atau email support@example.com.</p></div>'
   };
   container.innerHTML=sections[s]||'';
-}
-function openQris(){
-  document.getElementById('qrisModal').style.display='flex';
-}
-function closeQris(){
-  document.getElementById('qrisModal').style.display='none';
 }
 </script>
 </body>
