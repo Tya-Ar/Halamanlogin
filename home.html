@@ -3,196 +3,112 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>PPOB Dashboard Compact</title>
+<title>PPOB Dashboard Lengkap</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-* {
-  margin:0; padding:0; box-sizing:border-box;
-  font-family:'Roboto',sans-serif;
-}
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto',sans-serif;}
 body {background:#f4f6fb; color:#333; font-size:13px;}
 header {
-  background:#0d47a1;
-  color:#fff;
-  padding:10px 15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  position:sticky;
-  top:0;
+  background:#0d47a1; color:#fff; padding:10px 15px;
+  display:flex; justify-content:space-between; align-items:center;
+  position:sticky; top:0;
 }
 header h1 {font-size:15px;}
 nav button {
   background:rgba(255,255,255,0.1);
-  border:none;
-  padding:5px 10px;
-  border-radius:15px;
-  color:#fff;
-  cursor:pointer;
-  font-size:11px;
-  margin-left:5px;
+  border:none; padding:5px 10px; border-radius:15px;
+  color:#fff; cursor:pointer; font-size:11px; margin-left:5px;
 }
 .dashboard {
-  display:grid;
-  grid-template-columns:1fr;
-  gap:15px;
-  max-width:1200px;
-  margin:15px auto;
-  padding:0 10px;
+  display:grid; grid-template-columns:1fr; gap:15px;
+  max-width:1200px; margin:15px auto; padding:0 10px;
 }
 @media(min-width:768px){
   .dashboard {grid-template-columns:200px 1fr;}
 }
 .sidebar {
-  background:#fff;
-  border-radius:8px;
-  padding:15px;
+  background:#fff; border-radius:8px; padding:15px;
   box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
-.sidebar h3 {
-  font-size:14px;
-  color:#0d47a1;
-  margin-bottom:10px;
-}
+.sidebar h3 {font-size:14px; color:#0d47a1; margin-bottom:10px;}
 .scan-qris-professional {
   background:linear-gradient(90deg,#1976d2,#0d47a1);
-  color:#fff;
-  border:none;
-  border-radius:6px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:8px;
-  margin-bottom:12px;
-  cursor:pointer;
+  color:#fff; border:none; border-radius:6px;
+  display:flex; align-items:center; justify-content:center;
+  padding:8px; margin-bottom:12px; cursor:pointer;
   transition:background 0.3s;
 }
 .scan-qris-professional:hover {
   background:linear-gradient(90deg,#0d47a1,#1976d2);
 }
-.scan-qris-professional img {
-  width:18px;
-  margin-right:6px;
-}
+.scan-qris-professional img {width:18px; margin-right:6px;}
 .menu-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(80px,1fr));
-  gap:8px;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:8px;
 }
 .menu-item {
-  background:#f1f3f6;
-  border-radius:6px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:8px;
-  cursor:pointer;
-  transition:background 0.3s;
-  text-align:center;
+  background:#f1f3f6; border-radius:6px; display:flex;
+  flex-direction:column; align-items:center; padding:8px;
+  cursor:pointer; transition:background 0.3s; text-align:center;
 }
 .menu-item:hover {background:#e3f2fd;}
-.menu-item img {width:20px;margin-bottom:3px;}
+.menu-item img {width:20px; margin-bottom:3px;}
 .menu-item span {font-size:11px;}
-.main {
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-}
+.main {display:flex; flex-direction:column; gap:15px;}
 .card-saldo {
-  background:#1976d2;
-  color:#fff;
-  padding:10px;
-  border-radius:8px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.2);
-  cursor:pointer;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  background:#1976d2; color:#fff; padding:10px; border-radius:8px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2); cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center;
 }
 .card-saldo:hover {background:#1565c0;}
 .card-saldo h2 {font-size:14px;}
 .saldo-amount {font-size:16px; font-weight:700;}
 .saldo-detail {
-  display:none;
-  background:#e3f2fd;
-  color:#333;
-  border-radius:0 0 8px 8px;
-  padding:8px;
+  display:none; background:#e3f2fd; color:#333;
+  border-radius:0 0 8px 8px; padding:8px;
 }
 .saldo-detail p {margin:4px 0;}
 .saldo-detail button {
-  background:#0d47a1;
-  color:#fff;
-  border:none;
-  padding:5px 10px;
-  border-radius:4px;
-  margin-top:5px;
-  cursor:pointer;
-  font-size:11px;
+  background:#0d47a1; color:#fff; border:none;
+  padding:5px 10px; border-radius:4px; margin-top:5px;
+  cursor:pointer; font-size:11px;
 }
 .section {
-  background:#fff;
-  border-radius:8px;
-  padding:10px;
+  background:#fff; border-radius:8px; padding:10px;
   box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
-.section h3 {
-  color:#0d47a1;
-  font-size:14px;
-  margin-bottom:8px;
-}
-.section table {width:100%;border-collapse:collapse;}
+.section h3 {color:#0d47a1; font-size:14px; margin-bottom:8px;}
+.section table {width:100%; border-collapse:collapse;}
 .section th,.section td {
-  font-size:12px;
-  padding:4px;
-  border-bottom:1px solid #eee;
+  font-size:12px; padding:4px; border-bottom:1px solid #eee;
 }
 .products-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:10px;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:10px;
 }
 .product {
-  background:#fff;
-  border-radius:8px;
-  padding:10px;
-  text-align:center;
-  box-shadow:0 2px 6px rgba(0,0,0,0.1);
-  cursor:pointer;
+  background:#fff; border-radius:8px; padding:10px; text-align:center;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1); cursor:pointer;
   transition:transform 0.2s;
 }
 .product:hover {transform:translateY(-2px);}
-.product img {width:24px;margin-bottom:3px;}
+.product img {width:24px; margin-bottom:3px;}
 .product strong {font-size:12px;}
-footer {text-align:center;padding:10px;color:#777;font-size:12px;}
+footer {text-align:center; padding:10px; color:#777; font-size:12px;}
 #qrisModal {
-  display:none;
-  position:fixed;
-  top:0;left:0;
-  width:100%;
-  height:100%;
+  display:none; position:fixed; top:0; left:0;
+  width:100%; height:100%;
   background:rgba(0,0,0,0.7);
-  justify-content:center;
-  align-items:center;
+  justify-content:center; align-items:center;
   z-index:1000;
 }
 #qrisModal .content {
-  background:#fff;
-  padding:15px;
-  border-radius:6px;
-  text-align:center;
-  max-width:280px;
+  background:#fff; padding:15px; border-radius:6px;
+  text-align:center; max-width:280px;
 }
-#qrisModal .content h3 {margin-bottom:8px;font-size:14px;}
+#qrisModal .content h3 {margin-bottom:8px; font-size:14px;}
 #qrisModal .content img {width:180px; margin:8px 0;}
 #qrisModal .content button {
-  background:#0d47a1;
-  color:#fff;
-  border:none;
-  padding:6px 12px;
-  border-radius:4px;
-  cursor:pointer;
-  font-size:12px;
+  background:#0d47a1; color:#fff; border:none;
+  padding:6px 12px; border-radius:4px; cursor:pointer; font-size:12px;
 }
 </style>
 </head>
@@ -239,11 +155,22 @@ footer {text-align:center;padding:10px;color:#777;font-size:12px;}
       <div class="products-grid">
         <div class="product"><img src="https://img.icons8.com/color/96/phone.png"/><strong>Pulsa</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Paket Data</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/flash-on.png"/><strong>PLN</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Voucher Game</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/wallet.png"/><strong>E-Money</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/flash-on.png"/><strong>Token PLN</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Voucher MLBB</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Voucher Free Fire</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Voucher PUBG</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Steam Wallet</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>PlayStation Network</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/google-play.png"/><strong>Google Play</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/mac-os.png"/><strong>App Store</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/music.png"/><strong>Spotify Premium</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/wallet.png"/><strong>E-Money Top Up</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/water.png"/><strong>PDAM</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/video.png"/><strong>Streaming</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/video.png"/><strong>Paket TV Berlangganan</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/router.png"/><strong>Paket Internet Rumah</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/medical-doctor.png"/><strong>BPJS Kesehatan</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Pascabayar Telkomsel</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Indihome</strong></div>
       </div>
     </div>
   </div>
