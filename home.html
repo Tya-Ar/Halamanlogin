@@ -45,8 +45,25 @@ nav button {
   border-radius:10px;
   padding:20px;
   box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  position:relative;
 }
-.sidebar h3 {font-size:16px; color:#0d47a1; margin-bottom:15px;}
+.sidebar h3 {
+  font-size:16px;
+  color:#0d47a1;
+  margin-bottom:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.sidebar .scan-qris-btn {
+  background:#0d47a1;
+  color:#fff;
+  border:none;
+  padding:4px 8px;
+  border-radius:4px;
+  font-size:12px;
+  cursor:pointer;
+}
 .menu-grid {
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
@@ -172,7 +189,10 @@ footer {text-align:center;padding:15px;color:#777;}
 
 <div class="dashboard">
   <div class="sidebar">
-    <h3>Menu</h3>
+    <h3>
+      Menu
+      <button class="scan-qris-btn" onclick="openQris()">Scan QRIS</button>
+    </h3>
     <div class="menu-grid">
       <div class="menu-item" onclick="showSection('home')"><img src="https://img.icons8.com/ios-filled/50/home.png"/><span>Beranda</span></div>
       <div class="menu-item" onclick="showSection('riwayat')"><img src="https://img.icons8.com/ios-filled/50/order-history.png"/><span>Pesanan</span></div>
@@ -183,6 +203,9 @@ footer {text-align:center;padding:15px;color:#777;}
     </div>
   </div>
   <div class="main">
+    <!-- Sections muncul di atas saldo -->
+    <div id="dynamic-section"></div>
+
     <!-- Card Saldo -->
     <div class="card-saldo" onclick="toggleSaldoDetail()">
       <h2>Saldo Anda</h2>
@@ -209,30 +232,6 @@ footer {text-align:center;padding:15px;color:#777;}
         <div class="product"><img src="https://img.icons8.com/color/96/video.png"/><strong>Streaming</strong></div>
       </div>
     </div>
-
-    <!-- Sections lainnya -->
-    <div class="section" id="riwayat-section" style="display:none;">
-      <h3>Riwayat Pesanan</h3>
-      <table><tr><th>Tanggal</th><th>Produk</th><th>Status</th></tr><tr><td>07/07/2025</td><td>Pulsa</td><td>Sukses</td></tr></table>
-    </div>
-    <div class="section" id="deposit-section" style="display:none;">
-      <h3>Riwayat Deposit</h3>
-      <table><tr><th>Tanggal</th><th>Metode</th><th>Jumlah</th><th>Status</th></tr><tr><td>06/07/2025</td><td>Transfer</td><td>Rp200.000</td><td>Sukses</td></tr></table>
-    </div>
-    <div class="section" id="profil-section" style="display:none;">
-      <h3>Profil Akun</h3>
-      <p><strong>Nama:</strong> Nama Pengguna</p>
-      <p><strong>Email:</strong> user@example.com</p>
-      <p><strong>No HP:</strong> 08123456789</p>
-    </div>
-    <div class="section" id="pengaturan-section" style="display:none;">
-      <h3>Pengaturan Akun</h3>
-      <p><button onclick="alert('Ganti Password')">Ganti Password</button></p>
-    </div>
-    <div class="section" id="bantuan-section" style="display:none;">
-      <h3>Bantuan</h3>
-      <p>Hubungi CS di WhatsApp 08123456789 atau email support@example.com.</p>
-    </div>
   </div>
 </div>
 
@@ -254,12 +253,16 @@ function toggleSaldoDetail(){
   detail.style.display=detail.style.display==='block'?'none':'block';
 }
 function showSection(s){
-  const sections=["riwayat","deposit","profil","pengaturan","bantuan"];
-  sections.forEach(id=>{
-    document.getElementById(id+"-section").style.display="none";
-  });
-  if(s==='home') return;
-  document.getElementById(s+"-section").style.display="block";
+  const container=document.getElementById('dynamic-section');
+  const sections={
+    home:'',
+    riwayat:'<div class="section"><h3>Riwayat Pesanan</h3><table><tr><th>Tanggal</th><th>Produk</th><th>Status</th></tr><tr><td>07/07/2025</td><td>Pulsa</td><td>Sukses</td></tr></table></div>',
+    deposit:'<div class="section"><h3>Riwayat Deposit</h3><table><tr><th>Tanggal</th><th>Metode</th><th>Jumlah</th><th>Status</th></tr><tr><td>06/07/2025</td><td>Transfer</td><td>Rp200.000</td><td>Sukses</td></tr></table></div>',
+    profil:'<div class="section"><h3>Profil Akun</h3><p><strong>Nama:</strong> Nama Pengguna</p><p><strong>Email:</strong> user@example.com</p><p><strong>No HP:</strong> 08123456789</p></div>',
+    pengaturan:'<div class="section"><h3>Pengaturan Akun</h3><p><button onclick="alert(\'Ganti Password\')">Ganti Password</button></p></div>',
+    bantuan:'<div class="section"><h3>Bantuan</h3><p>Hubungi CS di WhatsApp 08123456789 atau email support@example.com.</p></div>'
+  };
+  container.innerHTML=sections[s]||'';
 }
 function openQris(){
   document.getElementById('qrisModal').style.display='flex';
