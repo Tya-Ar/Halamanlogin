@@ -48,22 +48,24 @@ nav button {
 }
 .sidebar h3 {font-size:16px; color:#0d47a1; margin-bottom:15px;}
 .menu-grid {
-  display:flex;
-  flex-direction:column;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
   gap:12px;
 }
 .menu-item {
   background:#f1f3f6;
   border-radius:8px;
   display:flex;
+  flex-direction:column;
   align-items:center;
-  padding:8px 10px;
+  padding:10px;
   cursor:pointer;
   transition:background 0.3s;
+  text-align:center;
 }
 .menu-item:hover {background:#e3f2fd;}
-.menu-item img {width:20px;margin-right:8px;}
-.menu-item span {font-size:14px;}
+.menu-item img {width:24px;margin-bottom:4px;}
+.menu-item span {font-size:12px;}
 .main {
   display:flex;
   flex-direction:column;
@@ -145,8 +147,8 @@ footer {text-align:center;padding:15px;color:#777;}
     <div class="menu-grid">
       <div class="menu-item" onclick="showSection('home')"><img src="https://img.icons8.com/ios-filled/50/home.png"/><span>Beranda</span></div>
       <div class="menu-item" onclick="showSection('riwayat')"><img src="https://img.icons8.com/ios-filled/50/order-history.png"/><span>Pesanan</span></div>
-      <div class="menu-item" onclick="showSection('deposit')"><img src="https://img.icons8.com/ios-filled/50/money.png"/><span>Riwayat Deposit</span></div>
-      <div class="menu-item" onclick="showSection('profil')"><img src="https://img.icons8.com/ios-filled/50/user.png"/><span>Profil Akun</span></div>
+      <div class="menu-item" onclick="showSection('deposit')"><img src="https://img.icons8.com/ios-filled/50/money.png"/><span>Deposit</span></div>
+      <div class="menu-item" onclick="showSection('profil')"><img src="https://img.icons8.com/ios-filled/50/user.png"/><span>Profil</span></div>
       <div class="menu-item" onclick="showSection('pengaturan')"><img src="https://img.icons8.com/ios-filled/50/settings.png"/><span>Pengaturan</span></div>
       <div class="menu-item" onclick="showSection('bantuan')"><img src="https://img.icons8.com/ios-filled/50/help.png"/><span>Bantuan</span></div>
     </div>
