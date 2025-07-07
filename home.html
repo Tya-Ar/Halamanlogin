@@ -45,24 +45,31 @@ nav button {
   border-radius:10px;
   padding:20px;
   box-shadow:0 2px 8px rgba(0,0,0,0.1);
-  position:relative;
 }
 .sidebar h3 {
   font-size:16px;
   color:#0d47a1;
   margin-bottom:15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
 }
-.sidebar .scan-qris-btn {
-  background:#0d47a1;
+.scan-qris-professional {
+  background:linear-gradient(90deg,#1976d2,#0d47a1);
   color:#fff;
   border:none;
-  padding:4px 8px;
-  border-radius:4px;
-  font-size:12px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px;
+  margin-bottom:15px;
   cursor:pointer;
+  transition:background 0.3s;
+}
+.scan-qris-professional:hover {
+  background:linear-gradient(90deg,#0d47a1,#1976d2);
+}
+.scan-qris-professional img {
+  width:20px;
+  margin-right:8px;
 }
 .menu-grid {
   display:grid;
@@ -147,7 +154,6 @@ nav button {
 .product img {width:28px;margin-bottom:5px;}
 .product strong {font-size:13px;}
 footer {text-align:center;padding:15px;color:#777;}
-/* Modal QRIS */
 #qrisModal {
   display:none;
   position:fixed;
@@ -189,10 +195,11 @@ footer {text-align:center;padding:15px;color:#777;}
 
 <div class="dashboard">
   <div class="sidebar">
-    <h3>
-      Menu
-      <button class="scan-qris-btn" onclick="openQris()">Scan QRIS</button>
-    </h3>
+    <h3>Menu</h3>
+    <button class="scan-qris-professional" onclick="openQris()">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/qr-code.png"/>
+      Scan QRIS
+    </button>
     <div class="menu-grid">
       <div class="menu-item" onclick="showSection('home')"><img src="https://img.icons8.com/ios-filled/50/home.png"/><span>Beranda</span></div>
       <div class="menu-item" onclick="showSection('riwayat')"><img src="https://img.icons8.com/ios-filled/50/order-history.png"/><span>Pesanan</span></div>
@@ -203,10 +210,7 @@ footer {text-align:center;padding:15px;color:#777;}
     </div>
   </div>
   <div class="main">
-    <!-- Sections muncul di atas saldo -->
     <div id="dynamic-section"></div>
-
-    <!-- Card Saldo -->
     <div class="card-saldo" onclick="toggleSaldoDetail()">
       <h2>Saldo Anda</h2>
       <div class="saldo-amount">Rp787.267.341,00</div>
@@ -218,8 +222,6 @@ footer {text-align:center;padding:15px;color:#777;}
       <button onclick="alert('Tarik saldo!')">Tarik Saldo</button>
       <button onclick="openQris()">Bayar via QRIS</button>
     </div>
-
-    <!-- Produk Digital -->
     <div class="section">
       <h3>Produk Digital</h3>
       <div class="products-grid">
@@ -237,7 +239,6 @@ footer {text-align:center;padding:15px;color:#777;}
 
 <footer>© 2025 PPOB Dashboard</footer>
 
-<!-- Modal QRIS -->
 <div id="qrisModal">
   <div class="content">
     <h3>Scan QRIS untuk Pembayaran</h3>
