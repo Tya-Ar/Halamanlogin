@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>PPOB Dashboard Profesional</title>
+<title>PPOB Dashboard Lengkap</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto',sans-serif;}
@@ -40,7 +40,7 @@ nav button:hover {background:rgba(255,255,255,0.3);}
   padding:0 15px;
 }
 @media(min-width:768px){
-  .dashboard {grid-template-columns:250px 1fr;}
+  .dashboard {grid-template-columns:220px 1fr;}
 }
 .sidebar {
   background:#fff;
@@ -48,57 +48,38 @@ nav button:hover {background:rgba(255,255,255,0.3);}
   padding:20px;
   box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
-.sidebar h3 {font-size:16px; color:#0d47a1; margin-bottom:10px;}
+.sidebar h3 {font-size:16px; color:#0d47a1; margin-bottom:15px;}
 .menu-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
-  gap:15px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 .menu-item {
   background:#f1f3f6;
-  border-radius:10px;
-  text-align:center;
-  padding:10px;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  padding:8px 10px;
   cursor:pointer;
   transition:background 0.3s;
 }
 .menu-item:hover {background:#e3f2fd;}
-.menu-item img {width:24px;margin-bottom:5px;}
-.menu-item span {font-size:12px;color:#333;}
+.menu-item img {width:20px;margin-right:8px;}
+.menu-item span {font-size:14px;}
 .main {
   display:flex;
   flex-direction:column;
   gap:20px;
 }
-.card-saldo {
-  background:#1976d2;
-  color:#fff;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.2);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-}
-.card-saldo h2 {font-size:16px;}
-.saldo-amount {font-size:20px;font-weight:700;}
-.actions {
-  margin-top:10px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.btn-action {
+.section {
   background:#fff;
-  color:#1976d2;
-  border:none;
-  padding:8px 12px;
-  border-radius:20px;
-  cursor:pointer;
-  font-size:13px;
+  border-radius:10px;
+  padding:15px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
-.btn-action:hover {background:#e3f2fd;}
+.section h3 {color:#0d47a1;font-size:15px;margin-bottom:10px;}
+.section table {width:100%;border-collapse:collapse;}
+.section th,.section td {font-size:13px;padding:6px;border-bottom:1px solid #eee;}
 .products-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
@@ -116,49 +97,6 @@ nav button:hover {background:rgba(255,255,255,0.3);}
 .product:hover {transform:translateY(-3px);}
 .product img {width:28px;margin-bottom:5px;}
 .product strong {font-size:13px;}
-.section {
-  background:#fff;
-  border-radius:10px;
-  padding:15px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.1);
-}
-.section h3 {color:#0d47a1;font-size:15px;margin-bottom:8px;}
-.section table {width:100%;border-collapse:collapse;}
-.section th,.section td {font-size:12px;padding:6px;border-bottom:1px solid #eee;}
-.modal {
-  display:none;
-  position:fixed;
-  top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.6);
-  justify-content:center;
-  align-items:center;
-  z-index:20;
-}
-.modal-content {
-  background:#fff;
-  padding:20px;
-  border-radius:8px;
-  width:90%;
-  max-width:400px;
-}
-.modal-content h3 {text-align:center;color:#0d47a1;}
-.modal-content input,.modal-content select {
-  width:100%;
-  padding:10px;
-  margin:8px 0;
-  border:1px solid #ccc;
-  border-radius:6px;
-}
-.modal-content button {
-  width:100%;
-  padding:10px;
-  background:#0d47a1;
-  color:#fff;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-}
-.close {float:right;font-size:20px;color:#999;cursor:pointer;}
 footer {text-align:center;padding:15px;color:#777;}
 </style>
 </head>
@@ -166,9 +104,8 @@ footer {text-align:center;padding:15px;color:#777;}
 <header>
   <h1>Dashboard PPOB</h1>
   <nav>
-    <button onclick="openModal('isi')">Isi Saldo</button>
-    <button onclick="openModal('transfer')">Transfer</button>
-    <button onclick="openModal('tarik')">Tarik</button>
+    <button onclick="alert('Fitur Isi Saldo')">Isi Saldo</button>
+    <button onclick="alert('Fitur Transfer')">Transfer</button>
   </nav>
 </header>
 
@@ -176,69 +113,78 @@ footer {text-align:center;padding:15px;color:#777;}
   <div class="sidebar">
     <h3>Menu</h3>
     <div class="menu-grid">
-      <div class="menu-item" onclick="showSection('produk')"><img src="https://img.icons8.com/ios-filled/50/home.png"/><span>Beranda</span></div>
+      <div class="menu-item" onclick="showSection('home')"><img src="https://img.icons8.com/ios-filled/50/home.png"/><span>Beranda</span></div>
+      <div class="menu-item" onclick="showSection('produk')"><img src="https://img.icons8.com/ios-filled/50/shopping-cart.png"/><span>Produk Digital</span></div>
       <div class="menu-item" onclick="showSection('riwayat')"><img src="https://img.icons8.com/ios-filled/50/order-history.png"/><span>Pesanan</span></div>
-      <div class="menu-item" onclick="showSection('riwayat-deposit')"><img src="https://img.icons8.com/ios-filled/50/money.png"/><span>Deposit</span></div>
-      <div class="menu-item" onclick="showSection('profil')"><img src="https://img.icons8.com/ios-filled/50/user.png"/><span>Profil</span></div>
+      <div class="menu-item" onclick="showSection('deposit')"><img src="https://img.icons8.com/ios-filled/50/money.png"/><span>Riwayat Deposit</span></div>
+      <div class="menu-item" onclick="showSection('profil')"><img src="https://img.icons8.com/ios-filled/50/user.png"/><span>Profil Akun</span></div>
+      <div class="menu-item" onclick="showSection('pengaturan')"><img src="https://img.icons8.com/ios-filled/50/settings.png"/><span>Pengaturan</span></div>
+      <div class="menu-item" onclick="showSection('bantuan')"><img src="https://img.icons8.com/ios-filled/50/help.png"/><span>Bantuan</span></div>
     </div>
   </div>
   <div class="main">
-    <div id="produk-section">
-      <div class="card-saldo">
-        <h2>Saldo Anda</h2>
-        <div class="saldo-amount">Rp 500.000</div>
-        <div class="actions">
-          <button class="btn-action" onclick="openModal('isi')">Isi Saldo</button>
-          <button class="btn-action" onclick="openModal('transfer')">Transfer</button>
-          <button class="btn-action" onclick="openModal('tarik')">Tarik</button>
-        </div>
-      </div>
+    <!-- Beranda -->
+    <div class="section" id="home-section">
+      <h3>Selamat Datang!</h3>
+      <p>Gunakan layanan PPOB dan SMM panel terbaik dengan saldo aman dan transaksi cepat.</p>
+    </div>
+    <!-- Produk -->
+    <div class="section" id="produk-section" style="display:none;">
+      <h3>Produk Digital</h3>
       <div class="products-grid">
-        <div class="product" onclick="buyProduct('Pulsa')"><img src="https://img.icons8.com/color/96/phone.png"/><strong>Pulsa</strong></div>
-        <div class="product" onclick="buyProduct('Paket Data')"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Paket Data</strong></div>
-        <div class="product" onclick="buyProduct('Token Listrik')"><img src="https://img.icons8.com/color/96/flash-on.png"/><strong>PLN</strong></div>
-        <div class="product" onclick="buyProduct('Voucher Game')"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Game</strong></div>
-        <div class="product" onclick="buyProduct('E-Money')"><img src="https://img.icons8.com/color/96/wallet.png"/><strong>E-Money</strong></div>
-        <div class="product" onclick="buyProduct('BPJS')"><img src="https://img.icons8.com/color/96/hospital.png"/><strong>BPJS</strong></div>
-        <div class="product" onclick="buyProduct('PDAM')"><img src="https://img.icons8.com/color/96/water.png"/><strong>PDAM</strong></div>
-        <div class="product" onclick="buyProduct('Streaming')"><img src="https://img.icons8.com/color/96/video.png"/><strong>Streaming</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/phone.png"/><strong>Pulsa</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Paket Data</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/flash-on.png"/><strong>PLN</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/controller.png"/><strong>Voucher Game</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/wallet.png"/><strong>E-Money</strong></div>
+        <div class="product"><img src="https://img.icons8.com/color/96/water.png"/><strong>PDAM</strong></div>
       </div>
     </div>
+    <!-- Pesanan -->
     <div class="section" id="riwayat-section" style="display:none;">
       <h3>Riwayat Pesanan</h3>
-      <table><tr><th>Tanggal</th><th>Produk</th><th>Status</th></tr><tr><td>01/07/2025</td><td>Pulsa 50.000</td><td>Sukses</td></tr></table>
+      <table>
+        <tr><th>Tanggal</th><th>Produk</th><th>Status</th></tr>
+        <tr><td>07/07/2025</td><td>Pulsa 50rb</td><td>Sukses</td></tr>
+        <tr><td>06/07/2025</td><td>Paket Data</td><td>Sukses</td></tr>
+      </table>
     </div>
-    <div class="section" id="riwayat-deposit-section" style="display:none;">
+    <!-- Deposit -->
+    <div class="section" id="deposit-section" style="display:none;">
       <h3>Riwayat Deposit</h3>
-      <table><tr><th>Tanggal</th><th>Metode</th><th>Jumlah</th><th>Status</th></tr><tr><td>01/07/2025</td><td>Bank Transfer</td><td>Rp 200.000</td><td>Sukses</td></tr></table>
+      <table>
+        <tr><th>Tanggal</th><th>Metode</th><th>Jumlah</th><th>Status</th></tr>
+        <tr><td>05/07/2025</td><td>Transfer</td><td>Rp200.000</td><td>Sukses</td></tr>
+      </table>
     </div>
+    <!-- Profil -->
     <div class="section" id="profil-section" style="display:none;">
       <h3>Profil Akun</h3>
       <p><strong>Nama:</strong> Nama Pengguna</p>
-      <p><strong>Email:</strong> email@example.com</p>
-      <p><strong>No. HP:</strong> 081234567890</p>
-      <button onclick="alert('Fitur ubah profil segera hadir!')">Ubah Profil</button>
+      <p><strong>Email:</strong> user@example.com</p>
+      <p><strong>No HP:</strong> 08123456789</p>
+    </div>
+    <!-- Pengaturan -->
+    <div class="section" id="pengaturan-section" style="display:none;">
+      <h3>Pengaturan Akun</h3>
+      <p><button onclick="alert('Fitur Ganti Password')">Ganti Password</button></p>
+    </div>
+    <!-- Bantuan -->
+    <div class="section" id="bantuan-section" style="display:none;">
+      <h3>Bantuan</h3>
+      <p>Hubungi CS kami melalui WhatsApp 08123456789 atau email support@example.com.</p>
     </div>
   </div>
 </div>
-
-<footer>© 2025 PPOB Dashboard</footer>
-
-<!-- Modals -->
-<div class="modal" id="isiModal"><div class="modal-content"><span class="close" onclick="closeModal('isi')">&times;</span><h3>Isi Saldo</h3><select><option>Pilih Metode</option><option>Bank Transfer</option><option>QRIS</option></select><input type="number" placeholder="Jumlah Deposit"/><button onclick="alert('Deposit berhasil!');closeModal('isi')">Deposit</button></div></div>
-<div class="modal" id="transferModal"><div class="modal-content"><span class="close" onclick="closeModal('transfer')">&times;</span><h3>Transfer Saldo</h3><input type="text" placeholder="Nomor Tujuan"/><input type="number" placeholder="Jumlah"/><button onclick="alert('Transfer berhasil!');closeModal('transfer')">Transfer</button></div></div>
-<div class="modal" id="tarikModal"><div class="modal-content"><span class="close" onclick="closeModal('tarik')">&times;</span><h3>Tarik Saldo</h3><input type="text" placeholder="Nomor Rekening"/><input type="number" placeholder="Jumlah"/><button onclick="alert('Tarik berhasil!');closeModal('tarik')">Tarik</button></div></div>
+<footer>© 2025 PPOB Dashboard Lengkap</footer>
 
 <script>
-function buyProduct(p){alert("Membeli: "+p);}
-function openModal(t){document.getElementById(t+'Modal').style.display='flex';}
-function closeModal(t){document.getElementById(t+'Modal').style.display='none';}
 function showSection(s){
-  document.getElementById('produk-section').style.display='none';
-  document.getElementById('riwayat-section').style.display='none';
-  document.getElementById('riwayat-deposit-section').style.display='none';
-  document.getElementById('profil-section').style.display='none';
-  document.getElementById(s+'-section').style.display='block';
+  const sections=["home","produk","riwayat","deposit","profil","pengaturan","bantuan"];
+  sections.forEach(id=>{
+    document.getElementById(id+"-section").style.display="none";
+  });
+  document.getElementById(s+"-section").style.display="block";
 }
 </script>
 </body>
