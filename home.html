@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Dashboard PPOB Lengkap</title>
+<title>SMARTPAY HUB</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto',sans-serif;}
@@ -111,11 +111,26 @@ footer {text-align:center; padding:10px; color:#777; font-size:12px;}
   font-size:11px; cursor:pointer; transition:background 0.3s;
 }
 .voucher-item:hover {background:#e3f2fd;}
+.deposit-table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:12px;
+}
+.deposit-table th, .deposit-table td {
+  padding:6px;
+  text-align:left;
+  border-bottom:1px solid #ddd;
+}
+.deposit-table tr.separator td {
+  border:none;
+  height:10px;
+  background:#f0f0f0;
+}
 </style>
 </head>
 <body>
 <header>
-  <h1>Dashboard PPOB</h1>
+  <h1>SMARTPAY HUB</h1>
   <nav>
     <button onclick="alert('Fitur Isi Saldo')">Isi Saldo</button>
     <button onclick="alert('Fitur Transfer')">Transfer</button>
@@ -175,7 +190,7 @@ footer {text-align:center; padding:10px; color:#777; font-size:12px;}
   </div>
 </div>
 
-<footer>© 2025 PPOB Dashboard</footer>
+<footer>© 2025 SMARTPAY HUB</footer>
 
 <div id="qrisModal">
   <div class="content">
@@ -237,8 +252,14 @@ function showSection(s){
     deposit:`
       <div class="section">
         <h3>Riwayat Deposit</h3>
-        <table>
-          <tr><th>Tanggal</th><th>Metode</th><th>Pengirim</th><th>Jumlah</th><th>Status</th></tr>
+        <table class="deposit-table">
+          <tr>
+            <th>Tanggal</th>
+            <th>Metode</th>
+            <th>Pengirim</th>
+            <th>Jumlah</th>
+            <th>Status</th>
+          </tr>
           <tr>
             <td>05/06/2025 22:45:28</td>
             <td>Transfer Bank BCA</td>
@@ -246,6 +267,7 @@ function showSection(s){
             <td>Rp200.000</td>
             <td>Sukses</td>
           </tr>
+          <tr class="separator"><td colspan="5"></td></tr>
           <tr>
             <td>07/07/2025 05:22:31</td>
             <td>Transfer Masuk</td>
