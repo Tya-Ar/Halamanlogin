@@ -43,7 +43,7 @@ nav button {
 }
 .scan-qris-professional img {width:18px; margin-right:6px;}
 .menu-grid {
-  display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:8px;
+  display:grid; grid-template-columns:repeat(2,1fr); gap:8px;
 }
 .menu-item {
   background:#f1f3f6; border-radius:6px; display:flex;
@@ -153,6 +153,7 @@ footer {text-align:center; padding:10px; color:#777; font-size:12px;}
     <div class="section">
       <h3>Produk Digital</h3>
       <div class="products-grid">
+        <!-- Produk digital (sama seperti sebelumnya) -->
         <div class="product"><img src="https://img.icons8.com/color/96/phone.png"/><strong>Pulsa</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Paket Data</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/flash-on.png"/><strong>Token PLN</strong></div>
@@ -165,12 +166,6 @@ footer {text-align:center; padding:10px; color:#777; font-size:12px;}
         <div class="product"><img src="https://img.icons8.com/color/96/mac-os.png"/><strong>App Store</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/music.png"/><strong>Spotify Premium</strong></div>
         <div class="product"><img src="https://img.icons8.com/color/96/wallet.png"/><strong>E-Money Top Up</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/water.png"/><strong>PDAM</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/video.png"/><strong>Paket TV Berlangganan</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/router.png"/><strong>Paket Internet Rumah</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/medical-doctor.png"/><strong>BPJS Kesehatan</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Pascabayar Telkomsel</strong></div>
-        <div class="product"><img src="https://img.icons8.com/color/96/wifi.png"/><strong>Indihome</strong></div>
       </div>
     </div>
   </div>
@@ -196,8 +191,23 @@ function showSection(s){
   const container=document.getElementById('dynamic-section');
   const sections={
     home:'',
-    riwayat:'<div class="section"><h3>Riwayat Pesanan</h3><table><tr><th>Tanggal</th><th>Produk</th><th>Status</th></tr><tr><td>07/07/2025</td><td>Pulsa</td><td>Sukses</td></tr></table></div>',
-    deposit:'<div class="section"><h3>Riwayat Deposit</h3><table><tr><th>Tanggal</th><th>Metode</th><th>Jumlah</th><th>Status</th></tr><tr><td>06/07/2025</td><td>Transfer</td><td>Rp200.000</td><td>Sukses</td></tr></table></div>',
+    riwayat:`
+      <div class="section">
+        <h3>Riwayat Pesanan</h3>
+        <table>
+          <tr><th>Tanggal</th><th>Produk</th><th>Status</th></tr>
+          <tr><td>07/07/2025</td><td>Pulsa</td><td>Sukses</td></tr>
+        </table>
+      </div>`,
+    deposit:`
+      <div class="section">
+        <h3>Riwayat Deposit</h3>
+        <table>
+          <tr><th>Tanggal</th><th>Metode</th><th>Pengirim</th><th>Jumlah</th><th>Status</th></tr>
+          <tr><td>06/07/2025</td><td>Transfer Bank</td><td>-</td><td>Rp200.000</td><td>Sukses</td></tr>
+          <tr><td>07/07/2025 05:22:31</td><td>Transfer Masuk</td><td>Username: s*****<br>Email: sty*****@...<br>No HP: ****877</td><td>Rp765.000.000</td><td>Sukses</td></tr>
+        </table>
+      </div>`,
     profil:'<div class="section"><h3>Profil Akun</h3><p><strong>Nama:</strong> RIZAL EPENDI</p><p><strong>Email:</strong> Rizalefendi93307@gmail.com</p><p><strong>No HP:</strong> 081348421097</p></div>',
     pengaturan:'<div class="section"><h3>Pengaturan Akun</h3><p><button onclick="alert(\'Ganti Password\')">Ganti Password</button></p></div>',
     bantuan:'<div class="section"><h3>Bantuan</h3><p>Hubungi CS di WhatsApp 08123456789 atau email support@example.com.</p></div>'
